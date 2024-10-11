@@ -17,7 +17,7 @@ body {
 }
 
 #gameCanvas {
-    display: none; /* Hidden by default */
+    display: none; /* Hidden until the game starts */
     border: 2px solid white;
     background-color: #111;
 }

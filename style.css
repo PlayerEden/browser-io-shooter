@@ -17,7 +17,7 @@ body {
 }
 
 #gameCanvas {
-    display: none;
+    display: none; /* Hidden by default */
     border: 2px solid white;
     background-color: #111;
 }

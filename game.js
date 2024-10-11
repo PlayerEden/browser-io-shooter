@@ -15,8 +15,6 @@ function startGame() {
     gameLoop(); // Start the main game loop
 }
 
-// game.js
-
 // Draw the game background (a grid for simplicity)
 function drawBackground() {
     ctx.fillStyle = '#333'; // Dark gray background

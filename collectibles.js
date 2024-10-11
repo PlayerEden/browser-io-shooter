@@ -2,7 +2,6 @@
 
 let collectibles = [];
 
-// Function to spawn a collectible at a random position
 function spawnCollectible() {
     collectibles.push({
         x: Math.random() * (canvas.width - playerSize),
@@ -11,7 +10,6 @@ function spawnCollectible() {
     });
 }
 
-// Function to draw collectibles on the canvas
 function drawCollectibles() {
     collectibles.forEach(collectible => {
         if (!collectible.collected) {
@@ -21,7 +19,6 @@ function drawCollectibles() {
     });
 }
 
-// Function to check if player collides with a collectible
 function checkCollectibleCollision() {
     collectibles.forEach((collectible, index) => {
         if (!collectible.collected &&
@@ -34,6 +31,3 @@ function checkCollectibleCollision() {
         }
     });
 }
-
-// Call this function periodically to spawn collectibles
-setInterval(spawnCollectible, 5000); // Spawns a collectible every 5 seconds

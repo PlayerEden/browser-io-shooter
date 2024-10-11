@@ -1,5 +1,6 @@
 // controls.js
 
+// Track key presses for movement
 let keys = {};
 
 window.addEventListener('keydown', (e) => {

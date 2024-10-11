@@ -1,18 +1,23 @@
 // game.js
 
-function gameLoop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawPlayer();
-    drawBullets();
-    updateEnemies();
-    updatePlayerPosition();
-    requestAnimationFrame(gameLoop);
-}
-
 // Initialize the game (e.g., start the loop after the start menu)
 function startGame() {
-    setInterval(spawnEnemy, 2000); // Spawns an enemy every 2 seconds
-    gameLoop(); // Start the main game loop
+    // Start spawning enemies or other elements here
+    setInterval(spawnEnemy, 2000); // Example: Spawn an enemy every 2 seconds
+    gameLoop(); // Begin the game loop
+}
+
+// Main game loop function
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+    
+    drawBackground();     // Draw the game background
+    drawPlayer();         // Draw the player
+    drawBullets();        // Draw and update bullets
+    updateEnemies();      // Move and draw enemies
+    updatePlayerPosition(); // Handle player movement
+
+    requestAnimationFrame(gameLoop); // Loop the game continuously
 }
 
 // Draw the game background (a grid for simplicity)

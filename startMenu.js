@@ -1,21 +1,23 @@
-// Grab elements for start menu and game canvas
-const startMenu = document.getElementById('start-menu');
-const startButton = document.getElementById('start-button');
-const colorPicker = document.getElementById('color-picker');
-const canvas = document.getElementById('gameCanvas');
+// startMenu.js
 
-// Set up initial canvas properties
-canvas.width = 400;
-canvas.height = 400;
+// Initialize the canvas and context globally
+const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// Start game when start button is clicked
+// Set the canvas dimensions
+canvas.width = 400;
+canvas.height = 400;
+
+// Start game on button click
+const startButton = document.getElementById('start-button');
+const colorPicker = document.getElementById('color-picker');
+
 startButton.addEventListener('click', () => {
-    // Set player color based on input
+    // Set player color based on the picker
     playerColor = colorPicker.value;
-    
-    // Hide the start menu and display the game canvas
-    startMenu.style.display = 'none';
+
+    // Hide start menu and show the game canvas
+    document.getElementById('start-menu').style.display = 'none';
     canvas.style.display = 'block';
 
     // Start the game loop

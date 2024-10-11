@@ -16,3 +16,10 @@ function updatePlayerPosition() {
     if (keys.ArrowLeft && playerX > 0) playerX -= playerSize;
     if (keys.ArrowRight && playerX < canvas.width - playerSize) playerX += playerSize;
 }
+
+function updatePlayerPosition() {
+    if (keys.ArrowUp && playerY > 0) playerY -= playerSize;
+    if (keys.ArrowDown && playerY < canvas.height - playerSize) playerY += playerSize;
+    if (keys.ArrowLeft && playerX > 0) playerX -= playerSize;
+    if (keys.ArrowRight && playerX < canvas.width - playerSize) playerX += playerSize;
+}

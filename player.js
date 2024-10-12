@@ -2,6 +2,10 @@
 
 let movementSpeed = 2; // Set movement speed to 2px per key press
 
+// player.js
+
+let movementSpeed = 2; // Set movement speed to 2px per key press
+
 // Function to draw the player
 function drawPlayer() {
     // Draw the main body of the player
@@ -20,10 +24,10 @@ function drawPlayer() {
                 ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + 15, playerSize - 4, 5);
                 break;
             case 'left':
-                ctx.fillRect(playerX - cameraX, playerY - cameraY + 5, 5, 10);
+                ctx.fillRect(playerX - cameraX, playerY - cameraY + 5, 5, playerSize - 10); // Wider left visor
                 break;
             case 'right':
-                ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 5, 5, 10);
+                ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 5, 5, playerSize - 10); // Wider right visor
                 break;
         }
     } else if (indicatorType === 'eyes') {

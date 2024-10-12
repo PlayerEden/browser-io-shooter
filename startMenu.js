@@ -1,22 +1,22 @@
 // startMenu.js
 
-// Initialize the canvas and context globally
+// Set up the canvas and context globally
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// Set the canvas dimensions
-canvas.width = 400;
-canvas.height = 400;
+// Set canvas size to make the map larger
+canvas.width = 800; // Increased width
+canvas.height = 800; // Increased height
 
 // Start game on button click
 const startButton = document.getElementById('start-button');
 const colorPicker = document.getElementById('color-picker');
 
 startButton.addEventListener('click', () => {
-    // Set player color based on the picker
+    // Set player color based on the color picker
     playerColor = colorPicker.value;
 
-    // Hide start menu and show the game canvas
+    // Hide the start menu and show the game canvas
     document.getElementById('start-menu').style.display = 'none';
     canvas.style.display = 'block';
 

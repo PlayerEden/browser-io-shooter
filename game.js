@@ -1,5 +1,9 @@
 // game.js
 
+let enemies = [];
+let bullets = [];
+let collectibles = [];
+
 function startGame() {
     // Start spawning enemies and collectibles
     setInterval(spawnEnemy, 2000); // Spawn enemies every 2 seconds
@@ -14,6 +18,7 @@ function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw and update all game elements
+    drawBackground(); // Draw the background (scrolling)
     drawPlayer(); // Draw player
     drawBullets(); // Draw bullets
     updateEnemies(); // Move and draw enemies
@@ -25,7 +30,7 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// Add resetGame function to reset the game on collision
+// Define resetGame to handle collision with enemy
 function resetGame() {
     console.log("Game Over");
 
@@ -33,7 +38,7 @@ function resetGame() {
     playerX = canvas.width / 2 - playerSize / 2;
     playerY = canvas.height / 2 - playerSize / 2;
 
-    // Clear all enemies and bullets
+    // Clear all enemies, bullets, and collectibles
     enemies = [];
     bullets = [];
     collectibles = [];

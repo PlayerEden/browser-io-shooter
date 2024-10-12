@@ -31,6 +31,7 @@ function gameLoop() {
 
     // Draw and update all game elements
     drawBackground(); // Draw the background (scrolling)
+    drawBarriers(); // Draw barriers
     drawPlayer(); // Draw player
     drawBullets(); // Draw bullets
     updateEnemies(); // Move and draw enemies

@@ -17,13 +17,14 @@ function gameLoop() {
     cameraX = Math.max(0, Math.min(worldWidth - canvas.width, playerX - canvas.width / 2));
     cameraY = Math.max(0, Math.min(worldHeight - canvas.height, playerY - canvas.height / 2));
 
-    // Draw and update all game elements
+    // Draw and update all game elements in correct order
     drawBackground(); // Draw the background (scrolling)
     drawBarriers(); // Draw barriers
+    drawCollectibles(); // Draw collectibles
+    updateEnemies(); // Move and draw enemies
     drawPlayer(); // Draw player
     drawBullets(); // Draw bullets
-    updateEnemies(); // Move and draw enemies
-    drawCollectibles(); // Draw collectibles
+
     checkCollectibleCollision(); // Check if player picks up any collectibles
     updatePlayerPosition(); // Update player movement
 

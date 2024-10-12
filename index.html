@@ -17,12 +17,14 @@
     <canvas id="gameCanvas"></canvas>
 
     <!-- Linking JS files -->
-    <script src="startMenu.js"></script> <!-- Ensure this loads first -->
     <script src="controls.js"></script>
     <script src="player.js"></script>
     <script src="weapons.js"></script>
     <script src="enemies.js"></script>
     <script src="collectibles.js"></script>
-    <script src="game.js"></script>
+    <script src="barriers.js"></script>
+    <script src="game.js"></script> <!-- Load game.js before startMenu.js -->
+    <script src="startMenu.js"></script> <!-- Load startMenu.js last -->
+
 </body>
 </html>

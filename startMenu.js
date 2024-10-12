@@ -4,8 +4,8 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-// Set canvas size to be smaller, allowing extra space around it
-canvas.width = 600; // Reduced width
+// Set canvas size to make the map larger
+canvas.width = 600; // Reduced width for a smaller playing area
 canvas.height = 400; // Reduced height
 
 // Start game on button click

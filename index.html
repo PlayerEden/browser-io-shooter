@@ -9,26 +9,39 @@
 <body>
     <div id="start-menu">
         <h1>Pixel Survival</h1>
-        <label for="color-picker">Choose your character color:</label>
-        <input type="color" id="color-picker" value="#00FF00">
         <button id="start-button">Start Game</button>
+        <button id="character-button">Character</button>
+    </div>
+
+    <div id="character-menu" style="display: none;">
+        <h2>Character Customization</h2>
+        <label for="color-picker">Choose Character Color:</label>
+        <input type="color" id="color-picker" value="#00FF00"><br><br>
+
+        <label for="indicator-type">Choose Indicator Type:</label>
+        <select id="indicator-type">
+            <option value="visor">Visor</option>
+            <option value="eyes">Eyes</option>
+        </select><br><br>
+
+        <label for="indicator-color">Choose Indicator Color:</label>
+        <input type="color" id="indicator-color" value="#0000FF"><br><br>
+
+        <button id="save-character-button">Save</button>
+        <button id="back-button">Back</button>
     </div>
 
     <canvas id="gameCanvas"></canvas>
 
     <!-- Linking JS files -->
-    <script src="globals.js"></script> <!-- Load globals.js first -->
+    <script src="globals.js"></script>
     <script src="controls.js"></script>
     <script src="player.js"></script>
     <script src="weapons.js"></script>
-    <script src="collectibles.js"></script> <!-- Load collectibles.js before game.js -->
+    <script src="collectibles.js"></script>
     <script src="enemies.js"></script>
     <script src="barriers.js"></script>
-    <script src="game.js"></script> <!-- Load game.js before startMenu.js -->
-    <script src="startMenu.js"></script> <!-- Load startMenu.js last -->
-
-
-
-
+    <script src="game.js"></script>
+    <script src="startMenu.js"></script>
 </body>
 </html>

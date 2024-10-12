@@ -11,9 +11,10 @@ var collectibles = [];
 
 // Player properties
 var playerSize = 20;
-var playerX = worldWidth / 2 - playerSize / 2; // Initial player X-coordinate (centered)
-var playerY = worldHeight / 2 - playerSize / 2; // Initial player Y-coordinate (centered)
+var playerX = worldWidth / 2 - playerSize / 2;
+var playerY = worldHeight / 2 - playerSize / 2;
 var playerColor = '#00FF00'; // Default color
+var playerDirection = 'up'; // Default direction
 
 // Camera properties
 var cameraX = 0;

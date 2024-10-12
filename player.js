@@ -1,12 +1,5 @@
 // player.js
 
-let playerSize = 20;
-let playerColor = '#00FF00'; // Default color, will be changed via startMenu.js
-
-// Initialize player in the center of the game world (not just the canvas)
-let playerX = worldWidth / 2 - playerSize / 2;
-let playerY = worldHeight / 2 - playerSize / 2;
-
 let movementSpeed = 2; // Set movement speed to 2px per key press
 
 // Function to draw the player

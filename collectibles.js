@@ -1,9 +1,10 @@
-//collectibles.js
+// collectibles.js
 
+// Declare collectibles array in globals.js to avoid re-declaration
 function spawnCollectible() {
     collectibles.push({
-        x: Math.random() * (canvas.width - playerSize),
-        y: Math.random() * (canvas.height - playerSize),
+        x: Math.random() * (worldWidth - playerSize),
+        y: Math.random() * (worldHeight - playerSize),
         collected: false
     });
 }
@@ -12,7 +13,7 @@ function drawCollectibles() {
     collectibles.forEach(collectible => {
         if (!collectible.collected) {
             ctx.fillStyle = '#FFD700'; // Gold color for collectible
-            ctx.fillRect(collectible.x, collectible.y, playerSize, playerSize);
+            ctx.fillRect(collectible.x - cameraX, collectible.y - cameraY, playerSize, playerSize);
         }
     });
 }

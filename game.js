@@ -1,10 +1,11 @@
 // game.js
 
-let enemies = [];
-let bullets = [];
-let collectibles = [];
+// Declare all global game variables here
+let enemies = [];  // Declare enemies array here globally to avoid re-declaration
+let bullets = [];  // Declare bullets globally
+let collectibles = [];  // Declare collectibles globally
 
-// Game world size (larger than the canvas)
+// Game world size (larger than the canvas to create a larger playing area)
 const worldWidth = 1600;
 const worldHeight = 1600;
 
@@ -13,16 +14,16 @@ let cameraX = 0;
 let cameraY = 0;
 
 function startGame() {
-    // Start spawning enemies and collectibles
+    // Start spawning enemies and collectibles at specific intervals
     setInterval(spawnEnemy, 2000); // Spawn enemies every 2 seconds
     setInterval(spawnCollectible, 5000); // Spawn collectibles every 5 seconds
 
-    // Start the game loop
+    // Start the main game loop
     gameLoop();
 }
 
 function gameLoop() {
-    // Clear the canvas
+    // Clear the canvas before drawing
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Update camera position to follow the player
@@ -43,78 +44,15 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// Updated draw functions to use camera offsets
-
-function drawBackground() {
-    ctx.fillStyle = '#333'; // Dark gray background
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw grid lines to indicate movement
-    ctx.strokeStyle = '#555';
-    for (let x = -cameraX % 50; x < canvas.width; x += 50) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvas.height);
-        ctx.stroke();
-    }
-    for (let y = -cameraY % 50; y < canvas.height; y += 50) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvas.width, y);
-        ctx.stroke();
-    }
-}
-
-function drawPlayer() {
-    ctx.fillStyle = playerColor;
-    ctx.fillRect(playerX - cameraX, playerY - cameraY, playerSize, playerSize);
-}
-
-function drawCollectibles() {
-    collectibles.forEach(collectible => {
-        if (!collectible.collected) {
-            ctx.fillStyle = '#FFD700'; // Gold color for collectible
-            ctx.fillRect(collectible.x - cameraX, collectible.y - cameraY, playerSize, playerSize);
-        }
-    });
-}
-
-function updateEnemies() {
-    enemies.forEach(enemy => {
-        // Move the enemy toward the player
-        if (enemy.x < playerX) enemy.x += enemy.speed;
-        if (enemy.x > playerX) enemy.x -= enemy.speed;
-        if (enemy.y < playerY) enemy.y += enemy.speed;
-        if (enemy.y > playerY) enemy.y -= enemy.speed;
-
-        // Draw the enemy
-        ctx.fillStyle = '#FF0000';
-        ctx.fillRect(enemy.x - cameraX, enemy.y - cameraY, playerSize, playerSize);
-
-        // Check collision with player
-        if (
-            playerX < enemy.x + playerSize &&
-            playerX + playerSize > enemy.x &&
-            playerY < enemy.y + playerSize &&
-            playerY + playerSize > enemy.y
-        ) {
-            resetGame(); // Call resetGame when collision occurs
-        }
-    });
-
-    // Remove enemies that go off-screen
-    enemies = enemies.filter(enemy => enemy.y < worldHeight && enemy.x < worldWidth);
-}
-
-// Define resetGame to handle collision with enemy
+// Define resetGame to handle collision with an enemy
 function resetGame() {
     console.log("Game Over");
 
     // Reset player position to the starting point
-    playerX = canvas.width / 2 - playerSize / 2;
-    playerY = canvas.height / 2 - playerSize / 2;
+    playerX = worldWidth / 2 - playerSize / 2;
+    playerY = worldHeight / 2 - playerSize / 2;
 
-    // Clear all enemies, bullets, and collectibles
+    // Clear all enemies, bullets, and collectibles arrays to reset game state
     enemies = [];
     bullets = [];
     collectibles = [];

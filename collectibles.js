@@ -1,7 +1,5 @@
 // collectibles.js
 
-let collectibles = [];
-
 function spawnCollectible() {
     collectibles.push({
         x: Math.random() * (canvas.width - playerSize),

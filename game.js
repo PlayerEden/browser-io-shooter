@@ -24,3 +24,17 @@ function gameLoop() {
     // Continue the game loop
     requestAnimationFrame(gameLoop);
 }
+
+// Add resetGame function to reset the game on collision
+function resetGame() {
+    console.log("Game Over");
+
+    // Reset player position to the starting point
+    playerX = canvas.width / 2 - playerSize / 2;
+    playerY = canvas.height / 2 - playerSize / 2;
+
+    // Clear all enemies and bullets
+    enemies = [];
+    bullets = [];
+    collectibles = [];
+}

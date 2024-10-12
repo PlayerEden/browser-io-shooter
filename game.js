@@ -1,18 +1,5 @@
 // game.js
 
-// Declare world dimensions globally so they can be accessed by other scripts
-var worldWidth = 1600;
-var worldHeight = 1600;
-
-// Declare all global game variables here
-var enemies = [];
-var bullets = [];
-var collectibles = [];
-
-// Camera properties
-let cameraX = 0;
-let cameraY = 0;
-
 function startGame() {
     // Start spawning enemies and collectibles at specific intervals
     setInterval(spawnEnemy, 2000); // Spawn enemies every 2 seconds

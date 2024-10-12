@@ -22,8 +22,7 @@ function updateEnemies() {
             playerX + playerSize > enemy.x &&
             playerY < enemy.y + playerSize &&
             playerY + playerSize > enemy.y) {
-            console.log('Game Over');
-            resetGame();
+            resetGame(); // Call resetGame when collision occurs
         }
     });
 

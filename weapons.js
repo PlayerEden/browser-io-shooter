@@ -1,6 +1,5 @@
 // weapons.js
 
-let bullets = [];
 const bulletSize = 5;
 const bulletSpeed = 5;
 

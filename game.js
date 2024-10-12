@@ -1,13 +1,13 @@
 // game.js
 
-// Declare all global game variables here
-let enemies = [];  // Declare enemies array here globally to avoid re-declaration
-let bullets = [];  // Declare bullets globally
-let collectibles = [];  // Declare collectibles globally
+// Declare world dimensions globally so they can be accessed by other scripts
+var worldWidth = 1600;
+var worldHeight = 1600;
 
-// Game world size (larger than the canvas to create a larger playing area)
-const worldWidth = 1600;
-const worldHeight = 1600;
+// Declare all global game variables here
+var enemies = [];
+var bullets = [];
+var collectibles = [];
 
 // Camera properties
 let cameraX = 0;
@@ -44,7 +44,6 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// Define resetGame to handle collision with an enemy
 function resetGame() {
     console.log("Game Over");
 

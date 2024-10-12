@@ -6,8 +6,8 @@ let playerColor = '#00FF00'; // Default color, will be changed via startMenu.js
 let playerX = canvas.width / 2 - playerSize / 2;
 let playerY = canvas.height / 2 - playerSize / 2;
 
-// Adjust the movement speed
-let movementSpeed = 5; // Set movement speed to 5px per key press
+// Further adjust the movement speed to make it slower
+let movementSpeed = 2; // Set movement speed to 2px per key press
 
 // Function to draw the player
 function drawPlayer() {

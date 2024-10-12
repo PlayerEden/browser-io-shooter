@@ -2,10 +2,6 @@
 
 let movementSpeed = 2; // Set movement speed to 2px per key press
 
-// player.js
-
-let movementSpeed = 2; // Set movement speed to 2px per key press
-
 // Function to draw the player
 function drawPlayer() {
     // Draw the main body of the player

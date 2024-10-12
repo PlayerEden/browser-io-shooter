@@ -17,9 +17,10 @@ body {
 }
 
 #gameCanvas {
-    display: none; /* Hidden until the game starts */
+    display: none; /* Initially hidden */
     border: 2px solid white;
     background-color: #111;
+    margin-top: 20px;
 }
 
 button {

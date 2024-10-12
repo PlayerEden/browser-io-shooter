@@ -8,21 +8,38 @@ function drawPlayer() {
     ctx.fillStyle = playerColor;
     ctx.fillRect(playerX - cameraX, playerY - cameraY, playerSize, playerSize);
 
-    // Draw the "visor" based on the direction the player is facing
-    ctx.fillStyle = visorColor; // Use a customizable visor color
-    switch (playerDirection) {
-        case 'up':
-            ctx.fillRect(playerX - cameraX + 2, playerY - cameraY, playerSize - 4, 5); // Wider visor
-            break;
-        case 'down':
-            ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + 15, playerSize - 4, 5); // Wider visor
-            break;
-        case 'left':
-            ctx.fillRect(playerX - cameraX, playerY - cameraY + 2, 5, playerSize - 4); // Wider visor
-            break;
-        case 'right':
-            ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 2, 5, playerSize - 4); // Wider visor
-            break;
+    // Draw the "indicator" (either visor or eyes) based on the selected type
+    ctx.fillStyle = visorColor; // Use customizable indicator color
+    if (indicatorType === 'visor') {
+        // Draw a wider visor
+        switch (playerDirection) {
+            case 'up':
+                ctx.fillRect(playerX - cameraX + 2, playerY - cameraY, playerSize - 4, 5);
+                break;
+            case 'down':
+                ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + 15, playerSize - 4, 5);
+                break;
+            case 'left':
+                ctx.fillRect(playerX - cameraX, playerY - cameraY + 2, 5, playerSize - 4);
+                break;
+            case 'right':
+                ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 2, 5, playerSize - 4);
+                break;
+        }
+    } else if (indicatorType === 'eyes') {
+        // Draw two small eyes
+        switch (playerDirection) {
+            case 'up':
+            case 'down':
+                ctx.fillRect(playerX - cameraX + 4, playerY - cameraY + 4, 3, 3);
+                ctx.fillRect(playerX - cameraX + 12, playerY - cameraY + 4, 3, 3);
+                break;
+            case 'left':
+            case 'right':
+                ctx.fillRect(playerX - cameraX + 4, playerY - cameraY + 4, 3, 3);
+                ctx.fillRect(playerX - cameraX + 4, playerY - cameraY + 12, 3, 3);
+                break;
+        }
     }
 }
 

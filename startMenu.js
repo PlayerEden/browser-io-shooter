@@ -8,15 +8,43 @@ const ctx = canvas.getContext('2d');
 canvas.width = 600; // Reduced width for a smaller playing area
 canvas.height = 400; // Reduced height
 
-// Start game on button click
+// Start menu and character menu elements
 const startButton = document.getElementById('start-button');
+const characterButton = document.getElementById('character-button');
+const characterMenu = document.getElementById('character-menu');
+const backButton = document.getElementById('back-button');
+const saveCharacterButton = document.getElementById('save-character-button');
+
+// Character customization elements
 const colorPicker = document.getElementById('color-picker');
+const indicatorTypeSelect = document.getElementById('indicator-type');
+const indicatorColorPicker = document.getElementById('indicator-color');
 
-startButton.addEventListener('click', () => {
-    // Set player color based on the color picker
+// Show the character customization menu
+characterButton.addEventListener('click', () => {
+    document.getElementById('start-menu').style.display = 'none';
+    characterMenu.style.display = 'block';
+});
+
+// Save character customization and return to the start menu
+saveCharacterButton.addEventListener('click', () => {
+    // Save character color, indicator type, and indicator color
     playerColor = colorPicker.value;
+    indicatorType = indicatorTypeSelect.value;
+    visorColor = indicatorColorPicker.value;
 
-    // Hide the start menu and show the game canvas
+    characterMenu.style.display = 'none';
+    document.getElementById('start-menu').style.display = 'flex';
+});
+
+// Go back from character customization to start menu
+backButton.addEventListener('click', () => {
+    characterMenu.style.display = 'none';
+    document.getElementById('start-menu').style.display = 'flex';
+});
+
+// Start the game on button click
+startButton.addEventListener('click', () => {
     document.getElementById('start-menu').style.display = 'none';
     canvas.style.display = 'block';
 

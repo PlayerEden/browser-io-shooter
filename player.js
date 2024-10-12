@@ -9,19 +9,19 @@ function drawPlayer() {
     ctx.fillRect(playerX - cameraX, playerY - cameraY, playerSize, playerSize);
 
     // Draw the "visor" based on the direction the player is facing
-    ctx.fillStyle = '#0000FF'; // Blue color for visor
+    ctx.fillStyle = visorColor; // Use a customizable visor color
     switch (playerDirection) {
         case 'up':
-            ctx.fillRect(playerX - cameraX + 5, playerY - cameraY, 10, 5);
+            ctx.fillRect(playerX - cameraX + 2, playerY - cameraY, playerSize - 4, 5); // Wider visor
             break;
         case 'down':
-            ctx.fillRect(playerX - cameraX + 5, playerY - cameraY + 15, 10, 5);
+            ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + 15, playerSize - 4, 5); // Wider visor
             break;
         case 'left':
-            ctx.fillRect(playerX - cameraX, playerY - cameraY + 5, 5, 10);
+            ctx.fillRect(playerX - cameraX, playerY - cameraY + 2, 5, playerSize - 4); // Wider visor
             break;
         case 'right':
-            ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 5, 5, 10);
+            ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 2, 5, playerSize - 4); // Wider visor
             break;
     }
 }

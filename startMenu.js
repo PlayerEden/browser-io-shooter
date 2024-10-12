@@ -17,8 +17,8 @@ const saveCharacterButton = document.getElementById('save-character-button');
 
 // Character customization elements
 const colorPicker = document.getElementById('color-picker');
-const indicatorTypeSelect = document.getElementById('indicator-type');
-const indicatorColorPicker = document.getElementById('indicator-color');
+const accessoryTypeSelect = document.getElementById('accessory-type');
+const accessoryColorPicker = document.getElementById('accessory-color');
 
 // Show the character customization menu
 characterButton.addEventListener('click', () => {
@@ -28,10 +28,10 @@ characterButton.addEventListener('click', () => {
 
 // Save character customization and return to the start menu
 saveCharacterButton.addEventListener('click', () => {
-    // Save character color, indicator type, and indicator color
+    // Save character color, accessory type, and accessory color
     playerColor = colorPicker.value;
-    indicatorType = indicatorTypeSelect.value;
-    visorColor = indicatorColorPicker.value;
+    indicatorType = accessoryTypeSelect.value; // Updated name to accessoryType
+    visorColor = accessoryColorPicker.value;
 
     characterMenu.style.display = 'none';
     document.getElementById('start-menu').style.display = 'flex';

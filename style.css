@@ -16,12 +16,22 @@ body {
     align-items: center;
 }
 
+#character-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+}
+
 #gameCanvas {
     display: none; /* Initially hidden */
     border: 2px solid white;
     background-color: #111;
     margin-top: 20px;
 }
+
 
 button {
     margin-top: 10px;
@@ -34,3 +44,4 @@ button {
 button:hover {
     background-color: #45a049;
 }
+

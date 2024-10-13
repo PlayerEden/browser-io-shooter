@@ -16,11 +16,29 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* Character customization menu styles */
+#character-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #444;
     padding: 20px;
     border-radius: 10px;
 }
 
+/* Settings menu styles */
+#settings-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Canvas styles */
 #gameCanvas {
     display: none; /* Initially hidden */
     border: 2px solid white;
@@ -28,63 +46,40 @@ body {
     margin-top: 20px;
 }
 
-/* Settings and Character Menu styles */
-#character-menu,
-#settings-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #444;
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-}
-
+/* Button styles */
 button {
     margin-top: 10px;
     padding: 10px;
     background-color: #00FF00;
     border: none;
     cursor: pointer;
+    font-size: 16px;
+    color: black;
 }
 
 button:hover {
     background-color: #45a049;
 }
 
-/* Input styles for menus */
-input[type="number"],
-input[type="color"] {
-    margin: 5px 0;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #888;
-}
-
-/* Settings menu styles */
-#settings-menu {
-    width: 300px;
-}
-
-/* Character menu preview box */
-#character-preview {
-    width: 50px;
-    height: 50px;
-    border: 2px solid #FFF;
-    margin: 20px 0;
-}
-
-/* Game over menu styles */
+/* Game Over menu styles */
 #game-over-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #444;
-    padding: 20px;
-    border-radius: 10px;
+    display: none; /* Hidden by default, will be created dynamically */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: #444;
     color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#game-over-menu button {
+    background-color: #ff5555;
+    margin-top: 10px;
+}
+
+#game-over-menu button:hover {
+    background-color: #ff0000;
 }

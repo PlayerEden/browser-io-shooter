@@ -5,30 +5,10 @@ function shootBullet() {
     let bullet = {
         x: playerX + playerSize / 2 - 2.5,
         y: playerY + playerSize / 2 - 2.5,
-        size: 5,
         speed: 10,
-        direction: playerDirection
+        direction: playerDirection,
+        size: 5
     };
-
-    // Set bullet velocity based on direction
-    switch (playerDirection) {
-        case 'up':
-            bullet.vx = 0;
-            bullet.vy = -bullet.speed;
-            break;
-        case 'down':
-            bullet.vx = 0;
-            bullet.vy = bullet.speed;
-            break;
-        case 'left':
-            bullet.vx = -bullet.speed;
-            bullet.vy = 0;
-            break;
-        case 'right':
-            bullet.vx = bullet.speed;
-            bullet.vy = 0;
-            break;
-    }
 
     bullets.push(bullet);
 }
@@ -37,8 +17,20 @@ function shootBullet() {
 function updateBullets() {
     bullets.forEach((bullet, index) => {
         // Move the bullet in its current direction
-        bullet.x += bullet.vx;
-        bullet.y += bullet.vy;
+        switch (bullet.direction) {
+            case 'up':
+                bullet.y -= bullet.speed;
+                break;
+            case 'down':
+                bullet.y += bullet.speed;
+                break;
+            case 'left':
+                bullet.x -= bullet.speed;
+                break;
+            case 'right':
+                bullet.x += bullet.speed;
+                break;
+        }
 
         // Check if bullet is off the map
         if (bullet.x < 0 || bullet.x > worldWidth || bullet.y < 0 || bullet.y > worldHeight) {

@@ -2,14 +2,14 @@
 
 // Function to spawn an enemy
 function spawnEnemy() {
-    enemies.push({
-        x: Math.random() * worldWidth,
-        y: Math.random() * worldHeight,
-        speed: 0.5
-    });
+    if (enemies.length < maxEnemies) { // Ensure we do not exceed max enemy count
+        enemies.push({
+            x: Math.random() * worldWidth,
+            y: Math.random() * worldHeight,
+            speed: enemySpeed // Use saved enemy speed from settings
+        });
+    }
 }
-
-// enemies.js
 
 // Function to update enemies
 function updateEnemies() {
@@ -17,11 +17,11 @@ function updateEnemies() {
         let newX = enemy.x;
         let newY = enemy.y;
 
-        // Move the enemy towards the player
-        if (enemy.x < playerX) newX += enemy.speed;
-        if (enemy.x > playerX) newX -= enemy.speed;
-        if (enemy.y < playerY) newY += enemy.speed;
-        if (enemy.y > playerY) newY -= enemy.speed;
+        // Move the enemy towards the player with the updated speed
+        if (enemy.x < playerX) newX += enemySpeed;
+        if (enemy.x > playerX) newX -= enemySpeed;
+        if (enemy.y < playerY) newY += enemySpeed;
+        if (enemy.y > playerY) newY -= enemySpeed;
 
         // Check if the new position is colliding with any barriers
         if (!isCollidingWithBarrier(newX, enemy.y, playerSize)) {

@@ -9,19 +9,19 @@ function drawPlayer() {
     // Draw the "accessory" (either visor or eyes) based on the selected type
     ctx.fillStyle = visorColor; // Use customizable accessory color
     if (indicatorType === 'visor') {
-        // Draw a wider visor
+        // Draw a wider visor in all directions
         switch (playerDirection) {
             case 'up':
-                ctx.fillRect(playerX - cameraX + 2, playerY - cameraY, playerSize - 4, 5);
+                ctx.fillRect(playerX - cameraX + 2, playerY - cameraY, playerSize - 4, 5); // Wide visor across the top
                 break;
             case 'down':
-                ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + 15, playerSize - 4, 5);
+                ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + 15, playerSize - 4, 5); // Wide visor across the bottom
                 break;
             case 'left':
-                ctx.fillRect(playerX - cameraX, playerY - cameraY + 5, 5, playerSize - 10); // Wider left visor
+                ctx.fillRect(playerX - cameraX, playerY - cameraY + 2, 5, playerSize - 4); // Wide visor on the left side
                 break;
             case 'right':
-                ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 5, 5, playerSize - 10); // Wider right visor
+                ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 2, 5, playerSize - 4); // Wide visor on the right side
                 break;
         }
     } else if (indicatorType === 'eyes') {
@@ -46,6 +46,7 @@ function drawPlayer() {
         }
     }
 }
+
 
 // Function to update player position
 function updatePlayerPosition() {

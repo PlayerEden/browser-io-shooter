@@ -1,7 +1,5 @@
 // barriers.js
 
-let barriers = [];
-
 // Function to spawn barriers with a maximum limit
 function spawnBarriers(maxBarriers) {
     barriers = []; // Clear previous barriers

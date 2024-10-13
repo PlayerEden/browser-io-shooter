@@ -1,83 +1,96 @@
-// Wrap everything in a DOMContentLoaded event listener to ensure the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Set up the canvas and context globally
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
+// startMenu.js
 
-    // Set canvas size to make the map larger
-    canvas.width = 600; // Reduced width for a smaller playing area
-    canvas.height = 400; // Reduced height
+// Set up the canvas and context globally
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
 
-    // Start menu and character menu elements
-    const startButton = document.getElementById('start-button');
-    const characterButton = document.getElementById('character-button');
-    const characterMenu = document.getElementById('character-menu');
-    const backButton = document.getElementById('back-button');
-    const saveCharacterButton = document.getElementById('save-character-button');
+// Set canvas size to make the map larger
+canvas.width = 600; // Reduced width for a smaller playing area
+canvas.height = 400; // Reduced height
 
-    // Character customization elements
-    const colorPicker = document.getElementById('color-picker');
-    const accessoryTypeSelect = document.getElementById('accessory-type');
-    const accessoryColorPicker = document.getElementById('accessory-color');
-    const previewCanvas = document.getElementById('character-preview');
-    const previewCtx = previewCanvas.getContext('2d');
+// Start menu and other elements
+const startButton = document.getElementById('start-button');
+const characterButton = document.getElementById('character-button');
+const settingsButton = document.getElementById('settings-button');
+const characterMenu = document.getElementById('character-menu');
+const settingsMenu = document.getElementById('settings-menu');
+const backButton = document.getElementById('back-button');
+const saveSettingsButton = document.getElementById('save-settings-button');
+const saveCharacterButton = document.getElementById('save-character-button');
 
-    // Show the character customization menu
-    characterButton.addEventListener('click', () => {
-        document.getElementById('start-menu').style.display = 'none';
-        characterMenu.style.display = 'block';
-        updateCharacterPreview(); // Update preview on open
-    });
+// Settings inputs
+const playerSpeedInput = document.getElementById('player-speed');
+const enemySpeedInput = document.getElementById('enemy-speed');
+const barrierCountInput = document.getElementById('barrier-count');
+const maxEnemyCountInput = document.getElementById('max-enemy-count');
+const barrierColorInput = document.getElementById('barrier-color');
+const backgroundColorInput = document.getElementById('background-color');
 
-    // Save character customization and return to the start menu
-    saveCharacterButton.addEventListener('click', () => {
-        // Save character color, accessory type, and accessory color
-        playerColor = colorPicker.value;
-        indicatorType = accessoryTypeSelect.value; // Updated name to accessoryType
-        visorColor = accessoryColorPicker.value;
+// Default settings
+let playerSpeed = parseFloat(playerSpeedInput.value);
+let enemySpeed = parseFloat(enemySpeedInput.value);
+let maxBarriers = parseInt(barrierCountInput.value);
+let maxEnemies = parseInt(maxEnemyCountInput.value);
+let barrierColor = barrierColorInput.value;
+let backgroundColor = backgroundColorInput.value;
 
-        characterMenu.style.display = 'none';
-        document.getElementById('start-menu').style.display = 'flex';
-    });
-
-    // Go back from character customization to start menu
-    backButton.addEventListener('click', () => {
-        characterMenu.style.display = 'none';
-        document.getElementById('start-menu').style.display = 'flex';
-    });
-
-    // Update the preview when character properties change
-    colorPicker.addEventListener('input', updateCharacterPreview);
-    accessoryTypeSelect.addEventListener('change', updateCharacterPreview);
-    accessoryColorPicker.addEventListener('input', updateCharacterPreview);
-
-    // Function to update character preview
-    function updateCharacterPreview() {
-        // Clear the preview canvas
-        previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
-
-        // Draw the character body
-        previewCtx.fillStyle = colorPicker.value;
-        previewCtx.fillRect(20, 20, 60, 60); // Draw a 60x60 character body in the center
-
-        // Draw the "accessory" based on the selected type
-        previewCtx.fillStyle = accessoryColorPicker.value;
-        if (accessoryTypeSelect.value === 'visor') {
-            // Draw a wider visor
-            previewCtx.fillRect(22, 20, 56, 10); // Wider visor across the front
-        } else if (accessoryTypeSelect.value === 'eyes') {
-            // Draw two small eyes
-            previewCtx.fillRect(30, 35, 5, 5); // Left eye
-            previewCtx.fillRect(55, 35, 5, 5); // Right eye
-        }
-    }
-
-    // Start the game on button click
-    startButton.addEventListener('click', () => {
-        document.getElementById('start-menu').style.display = 'none';
-        canvas.style.display = 'block';
-
-        // Start the game loop
-        startGame();
-    });
+// Show the character customization menu
+characterButton.addEventListener('click', () => {
+    document.getElementById('start-menu').style.display = 'none';
+    characterMenu.style.display = 'block';
 });
+
+// Show the settings menu
+settingsButton.addEventListener('click', () => {
+    document.getElementById('start-menu').style.display = 'none';
+    settingsMenu.style.display = 'block';
+});
+
+// Save character customization and return to the start menu
+saveCharacterButton.addEventListener('click', () => {
+    // Save character color, accessory type, and accessory color
+    playerColor = colorPicker.value;
+    indicatorType = accessoryTypeSelect.value;
+    visorColor = accessoryColorPicker.value;
+
+    characterMenu.style.display = 'none';
+    document.getElementById('start-menu').style.display = 'flex';
+});
+
+// Save settings and return to the start menu
+saveSettingsButton.addEventListener('click', () => {
+    playerSpeed = parseFloat(playerSpeedInput.value);
+    enemySpeed = parseFloat(enemySpeedInput.value);
+    maxBarriers = parseInt(barrierCountInput.value);
+    maxEnemies = parseInt(maxEnemyCountInput.value);
+    barrierColor = barrierColorInput.value;
+    backgroundColor = backgroundColorInput.value;
+
+    settingsMenu.style.display = 'none';
+    document.getElementById('start-menu').style.display = 'flex';
+});
+
+// Go back from settings or character customization to start menu
+backButton.addEventListener('click', () => {
+    settingsMenu.style.display = 'none';
+    characterMenu.style.display = 'none';
+    document.getElementById('start-menu').style.display = 'flex';
+});
+
+// Start the game on button click
+startButton.addEventListener('click', () => {
+    document.getElementById('start-menu').style.display = 'none';
+    canvas.style.display = 'block';
+
+    // Set the updated background color
+    drawBackground();
+
+    // Start the game loop
+    startGame();
+});
+
+// Function to draw the background with the selected color
+function drawBackground() {
+    ctx.fillStyle = backgroundColor; // Use customizable background color
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}

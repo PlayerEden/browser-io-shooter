@@ -1,6 +1,9 @@
 // game.js
 
 function startGame() {
+    // Spawn barriers with a max limit (e.g., 10 barriers)
+    spawnBarriers(10);
+
     // Start spawning enemies and collectibles at specific intervals
     setInterval(spawnEnemy, 2000); // Spawn enemies every 2 seconds
     setInterval(spawnCollectible, 5000); // Spawn collectibles every 5 seconds

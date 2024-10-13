@@ -21,9 +21,9 @@ var indicatorType = 'visor'; // Default accessory type is visor
 var canvas = document.getElementById('gameCanvas');
 var ctx = canvas.getContext('2d');
 
-// Set the canvas size to create an even more zoomed-in view
-canvas.width = 300; // Smaller width for a more zoomed-in view
-canvas.height = 200; // Smaller height for a more zoomed-in view
+// Set the canvas size to create a more zoomed-in view
+canvas.width = 250; // Smaller width for a more zoomed-in view
+canvas.height = 150; // Smaller height for a more zoomed-in view
 
 // Camera properties
 var cameraX = 0;

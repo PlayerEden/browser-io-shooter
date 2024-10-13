@@ -2,49 +2,35 @@
 
 // Function to shoot a bullet in the direction the player is facing
 function shootBullet() {
+    let bulletSpeed = 5;
     let bullet = {
         x: playerX + playerSize / 2 - 2.5,
         y: playerY + playerSize / 2 - 2.5,
-        speed: 10,
-        direction: playerDirection
+        vx: 0,
+        vy: 0,
+        size: 5
     };
+
+    // Set bullet velocity based on the player's direction
+    switch (playerDirection) {
+        case 'up':
+            bullet.vy = -bulletSpeed;
+            break;
+        case 'down':
+            bullet.vy = bulletSpeed;
+            break;
+        case 'left':
+            bullet.vx = -bulletSpeed;
+            break;
+        case 'right':
+            bullet.vx = bulletSpeed;
+            break;
+    }
 
     bullets.push(bullet);
 }
 
-// Function to draw bullets and update their positions
-function drawBullets() {
-    ctx.fillStyle = '#FF0000'; // Red bullets
-    bullets.forEach((bullet, index) => {
-        // Move the bullet in the direction it was shot
-        switch (bullet.direction) {
-            case 'up':
-                bullet.y -= bullet.speed;
-                break;
-            case 'down':
-                bullet.y += bullet.speed;
-                break;
-            case 'left':
-                bullet.x -= bullet.speed;
-                break;
-            case 'right':
-                bullet.x += bullet.speed;
-                break;
-        }
-
-        // Draw the bullet
-        ctx.fillRect(bullet.x - cameraX, bullet.y - cameraY, 5, 5);
-
-        // Remove bullets that go off-screen
-        if (bullet.y < 0 || bullet.y > worldHeight || bullet.x < 0 || bullet.x > worldWidth) {
-            bullets.splice(index, 1);
-        }
-    });
-}
-
-// weapons.js
-
-// Function to update bullets
+// Function to update and draw bullets
 function updateBullets() {
     bullets.forEach((bullet, index) => {
         // Move the bullet in its current direction
@@ -77,4 +63,3 @@ function updateBullets() {
         ctx.fillRect(bullet.x - cameraX, bullet.y - cameraY, bullet.size, bullet.size);
     });
 }
-

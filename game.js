@@ -4,8 +4,9 @@ let gameOver = false; // Flag to track whether the game is over
 
 function startGame() {
     gameOver = false; // Reset the gameOver flag
-    // Spawn barriers with a max limit (e.g., 10 barriers)
-    spawnBarriers(10);
+
+    // Increase the barrier limit (e.g., 20 barriers instead of 10)
+    spawnBarriers(20);
 
     // Start spawning enemies and collectibles at specific intervals
     setInterval(spawnEnemy, 2000); // Spawn enemies every 2 seconds

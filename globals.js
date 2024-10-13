@@ -16,7 +16,7 @@ var playerX = worldWidth / 2 - playerSize / 2;
 var playerY = worldHeight / 2 - playerSize / 2;
 var playerColor = '#00FF00'; // Default player color (green)
 var playerDirection = 'up'; // Default direction
-var movementSpeed = 1; // Default player speed
+var movementSpeed = 1; // Set movement speed to 1px per key press
 var visorColor = '#0000FF'; // Default visor/indicator color (blue)
 var indicatorType = 'visor'; // Default accessory type is visor
 
@@ -32,13 +32,10 @@ canvas.height = 300; // Smaller height for a more zoomed-in view
 var cameraX = 0;
 var cameraY = 0;
 
-// Game settings
-var playerSpeed = 1; // Initial player speed (updated by settings menu)
-var enemySpeed = 0.5; // Initial enemy speed (updated by settings menu)
-var maxBarriers = 20; // Maximum number of barriers (updated by settings menu)
-var maxEnemies = 10; // Maximum number of enemies (updated by settings menu)
-var barrierColor = '#808080'; // Default barrier color (updated by settings menu)
-var backgroundColor = '#333333'; // Default background color (updated to full hex value)
-
-// Flag to track whether the game is over
-var gameOver = false;
+// Game settings (set from settings menu)
+var playerSpeed = 1; // Default player speed
+var enemySpeed = 0.5; // Default enemy speed
+var maxBarriers = 20; // Default barrier count
+var maxEnemies = 10; // Default max enemy count
+var barrierColor = '#808080'; // Default barrier color (gray)
+var backgroundColor = '#333'; // Default background color (dark gray)

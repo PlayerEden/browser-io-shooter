@@ -2,9 +2,16 @@
 
 // Function to draw the player
 function drawPlayer() {
-    // Draw the main body of the player
+    // Draw the main body of the player with "rounded" corners by skipping each corner
     ctx.fillStyle = playerColor;
-    ctx.fillRect(playerX - cameraX, playerY - cameraY, playerSize, playerSize);
+
+    // Draw the main body, excluding the corners
+    // Top row (excluding corners)
+    ctx.fillRect(playerX - cameraX + 1, playerY - cameraY, playerSize - 2, 1);
+    // Middle rows (full width)
+    ctx.fillRect(playerX - cameraX, playerY - cameraY + 1, playerSize, playerSize - 2);
+    // Bottom row (excluding corners)
+    ctx.fillRect(playerX - cameraX + 1, playerY - cameraY + playerSize - 1, playerSize - 2, 1);
 
     // Draw the "accessory" (either visor or eyes) based on the selected type
     ctx.fillStyle = visorColor; // Use customizable accessory color
@@ -18,10 +25,10 @@ function drawPlayer() {
                 ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + 15, playerSize - 4, 5); // Wide visor across the bottom
                 break;
             case 'left':
-                ctx.fillRect(playerX - cameraX, playerY - cameraY + 2, 5, playerSize - 4); // Wide visor on the left side
+                ctx.fillRect(playerX - cameraX, playerY - cameraY + 5, 5, playerSize - 10); // Wide visor on the left side
                 break;
             case 'right':
-                ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 2, 5, playerSize - 4); // Wide visor on the right side
+                ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 5, 5, playerSize - 10); // Wide visor on the right side
                 break;
         }
     } else if (indicatorType === 'eyes') {
@@ -46,6 +53,7 @@ function drawPlayer() {
         }
     }
 }
+
 
 
 // Function to update player position

@@ -13,7 +13,7 @@ var playerX = worldWidth / 2 - playerSize / 2;
 var playerY = worldHeight / 2 - playerSize / 2;
 var playerColor = '#00FF00'; // Default player color (green)
 var playerDirection = 'up'; // Default direction
-var movementSpeed = 0.5; // Set movement speed to 2px per key press
+var movementSpeed = 1; // Set movement speed to 2px per key press
 var visorColor = '#0000FF'; // Default visor/indicator color (blue)
 var indicatorType = 'visor'; // Default accessory type is visor
 

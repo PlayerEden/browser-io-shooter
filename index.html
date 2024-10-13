@@ -17,18 +17,18 @@
         <h2>Character Customization</h2>
         <label for="color-picker">Choose Character Color:</label>
         <input type="color" id="color-picker" value="#00FF00"><br><br>
-    
+
         <label for="accessory-type">Choose Accessory Type:</label>
         <select id="accessory-type">
             <option value="visor">Visor</option>
             <option value="eyes">Eyes</option>
         </select><br><br>
-    
+
         <label for="accessory-color">Choose Accessory Color:</label>
         <input type="color" id="accessory-color" value="#0000FF"><br><br>
-    
+
         <canvas id="character-preview" width="100" height="100" style="border: 1px solid #000;"></canvas><br><br>
-    
+
         <button id="save-character-button">Save</button>
         <button id="back-button">Back</button>
     </div>
@@ -38,12 +38,12 @@
     <!-- Linking JS files -->
     <script src="globals.js"></script>
     <script src="controls.js"></script>
-    <script src="player.js"></script>
+    <script src="player.js"></script> <!-- Load player.js before game.js -->
     <script src="weapons.js"></script>
     <script src="collectibles.js"></script>
     <script src="enemies.js"></script>
     <script src="barriers.js"></script>
-    <script src="game.js"></script>
-    <script src="startMenu.js"></script>
+    <script src="game.js"></script> <!-- Load game.js after all game elements are defined -->
+    <script src="startMenu.js"></script> <!-- Load startMenu.js last -->
 </body>
 </html>

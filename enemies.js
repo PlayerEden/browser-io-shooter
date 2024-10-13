@@ -5,7 +5,7 @@ function spawnEnemy() {
     enemies.push({
         x: Math.random() * worldWidth,
         y: Math.random() * worldHeight,
-        speed: 0.5
+        speed: 0.25
     });
 }
 

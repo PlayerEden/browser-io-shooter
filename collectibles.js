@@ -1,6 +1,8 @@
 // collectibles.js
 
-// Declare collectibles array in globals.js to avoid re-declaration
+let collectibles = [];
+
+// Function to spawn a collectible at a random location
 function spawnCollectible() {
     collectibles.push({
         x: Math.random() * (worldWidth - playerSize),
@@ -9,6 +11,7 @@ function spawnCollectible() {
     });
 }
 
+// Function to draw collectibles on the canvas
 function drawCollectibles() {
     collectibles.forEach(collectible => {
         if (!collectible.collected) {
@@ -18,6 +21,7 @@ function drawCollectibles() {
     });
 }
 
+// Function to check if the player collects a collectible
 function checkCollectibleCollision() {
     collectibles.forEach((collectible, index) => {
         if (!collectible.collected &&
@@ -25,7 +29,8 @@ function checkCollectibleCollision() {
             playerX + playerSize > collectible.x &&
             playerY < collectible.y + playerSize &&
             playerY + playerSize > collectible.y) {
-            collectible.collected = true;
+            collectible.collected = true; // Mark as collected
+            collectibles.splice(index, 1); // Remove collectible from array
             console.log("Collectible found!");
         }
     });

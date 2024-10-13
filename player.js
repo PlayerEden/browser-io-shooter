@@ -47,7 +47,6 @@ function drawPlayer() {
     }
 }
 
-
 // Function to update player position
 function updatePlayerPosition() {
     if (keys.ArrowUp && playerY > 0) {

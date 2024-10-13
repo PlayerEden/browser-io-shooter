@@ -38,7 +38,7 @@ var enemySpeed = 0.5; // Initial enemy speed (updated by settings menu)
 var maxBarriers = 20; // Maximum number of barriers (updated by settings menu)
 var maxEnemies = 10; // Maximum number of enemies (updated by settings menu)
 var barrierColor = '#808080'; // Default barrier color (updated by settings menu)
-var backgroundColor = '#333'; // Default background color (updated by settings menu)
+var backgroundColor = '#333333'; // Default background color (updated to full hex value)
 
 // Flag to track whether the game is over
 var gameOver = false;

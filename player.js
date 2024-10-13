@@ -1,6 +1,6 @@
 // player.js
 
-// Function to draw the player
+// Function to draw the player with the saved color and accessory type
 function drawPlayer() {
     // Draw the main body of the player with "rounded" corners by skipping each corner
     ctx.fillStyle = playerColor;
@@ -22,13 +22,13 @@ function drawPlayer() {
                 ctx.fillRect(playerX - cameraX + 2, playerY - cameraY, playerSize - 4, 5); // Wide visor across the top
                 break;
             case 'down':
-                ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + 15, playerSize - 4, 5); // Wide visor across the bottom
+                ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + playerSize - 5, playerSize - 4, 5); // Wide visor across the bottom
                 break;
             case 'left':
                 ctx.fillRect(playerX - cameraX, playerY - cameraY + 5, 5, playerSize - 10); // Wide visor on the left side
                 break;
             case 'right':
-                ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 5, 5, playerSize - 10); // Wide visor on the right side
+                ctx.fillRect(playerX - cameraX + playerSize - 5, playerY - cameraY + 5, 5, playerSize - 10); // Wide visor on the right side
                 break;
         }
     } else if (indicatorType === 'eyes') {
@@ -54,38 +54,22 @@ function drawPlayer() {
     }
 }
 
-
-
-// player.js
-
-// Function to update player position
+// Function to update player position with updated speed
 function updatePlayerPosition() {
-    let newX = playerX;
-    let newY = playerY;
-
     if (keys.ArrowUp && playerY > 0) {
-        newY -= movementSpeed;
+        playerY -= playerSpeed; // Use the saved player speed
         playerDirection = 'up'; // Update direction
     }
     if (keys.ArrowDown && playerY < worldHeight - playerSize) {
-        newY += movementSpeed;
+        playerY += playerSpeed; // Use the saved player speed
         playerDirection = 'down'; // Update direction
     }
     if (keys.ArrowLeft && playerX > 0) {
-        newX -= movementSpeed;
+        playerX -= playerSpeed; // Use the saved player speed
         playerDirection = 'left'; // Update direction
     }
     if (keys.ArrowRight && playerX < worldWidth - playerSize) {
-        newX += movementSpeed;
+        playerX += playerSpeed; // Use the saved player speed
         playerDirection = 'right'; // Update direction
     }
-
-    // Check if new position is colliding with any barriers
-    if (!isCollidingWithBarrier(newX, playerY, playerSize)) {
-        playerX = newX;
-    }
-    if (!isCollidingWithBarrier(playerX, newY, playerSize)) {
-        playerY = newY;
-    }
 }
-

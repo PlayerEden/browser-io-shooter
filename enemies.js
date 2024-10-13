@@ -1,17 +1,15 @@
 // enemies.js
 
-// Function to spawn an enemy at a random location
+// Function to spawn an enemy at a random position
 function spawnEnemy() {
-    if (enemies.length < maxEnemies) {
-        enemies.push({
-            x: Math.random() * worldWidth,
-            y: Math.random() * worldHeight,
-            speed: enemySpeed
-        });
-    }
+    enemies.push({
+        x: Math.random() * worldWidth,
+        y: Math.random() * worldHeight,
+        speed: enemySpeed
+    });
 }
 
-// Function to update enemies' movement and handle their interactions
+// Function to update enemies' positions and handle interactions
 function updateEnemies() {
     enemies.forEach((enemy, index) => {
         let newX = enemy.x;
@@ -32,7 +30,7 @@ function updateEnemies() {
         }
 
         // Draw the enemy on the canvas
-        ctx.fillStyle = '#FF0000'; // Red color for enemies
+        ctx.fillStyle = '#FF0000'; // Red enemy color
         ctx.fillRect(enemy.x - cameraX, enemy.y - cameraY, playerSize, playerSize);
 
         // Check for collision with the player
@@ -45,7 +43,4 @@ function updateEnemies() {
             resetGame(); // Call resetGame when a collision occurs
         }
     });
-
-    // Remove enemies that go off-screen (optional)
-    enemies = enemies.filter(enemy => enemy.y < worldHeight && enemy.x < worldWidth);
 }

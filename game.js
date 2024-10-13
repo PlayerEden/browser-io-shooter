@@ -35,7 +35,6 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-
 // Define drawBackground function to draw the game background
 function drawBackground() {
     ctx.fillStyle = '#333'; // Dark gray background

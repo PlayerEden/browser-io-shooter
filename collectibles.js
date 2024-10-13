@@ -1,7 +1,5 @@
 // collectibles.js
 
-let collectibles = [];
-
 // Function to spawn a collectible at a random location
 function spawnCollectible() {
     collectibles.push({

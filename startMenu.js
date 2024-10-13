@@ -31,14 +31,6 @@ const maxEnemyCountInput = document.getElementById('max-enemy-count');
 const barrierColorInput = document.getElementById('barrier-color');
 const backgroundColorInput = document.getElementById('background-color');
 
-// Default settings
-let playerSpeed = parseFloat(playerSpeedInput.value);
-let enemySpeed = parseFloat(enemySpeedInput.value);
-let maxBarriers = parseInt(barrierCountInput.value);
-let maxEnemies = parseInt(maxEnemyCountInput.value);
-let barrierColor = barrierColorInput.value;
-let backgroundColor = backgroundColorInput.value;
-
 // Show the character customization menu
 characterButton.addEventListener('click', () => {
     document.getElementById('start-menu').style.display = 'none';

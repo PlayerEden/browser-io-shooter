@@ -9,11 +9,27 @@
 <body>
     <div id="start-menu">
         <h1>Pixel Survival</h1>
-        <label for="color-picker">Choose your character color:</label>
-        <input type="color" id="color-picker" value="#00FF00">
         <button id="start-button">Start Game</button>
         <button id="character-button">Character</button>
         <button id="settings-button">Settings</button>
+    </div>
+
+    <div id="character-menu" style="display: none;">
+        <h1>Character Customization</h1>
+        <label for="color-picker">Character Color:</label>
+        <input type="color" id="color-picker" value="#00FF00"><br>
+
+        <label for="accessory-type">Accessory Type:</label>
+        <select id="accessory-type">
+            <option value="visor">Visor</option>
+            <option value="eyes">Eyes</option>
+        </select><br>
+
+        <label for="accessory-color">Accessory Color:</label>
+        <input type="color" id="accessory-color" value="#0000FF"><br>
+
+        <button id="save-character-button">Save Character</button>
+        <button id="back-button">Back</button>
     </div>
 
     <div id="settings-menu" style="display: none;">
@@ -37,7 +53,7 @@
         <input type="color" id="background-color" value="#333"><br>
 
         <button id="save-settings-button">Save Settings</button>
-        <button id="back-button">Back</button>
+        <button id="back-button-settings">Back</button>
     </div>
 
     <canvas id="gameCanvas"></canvas>

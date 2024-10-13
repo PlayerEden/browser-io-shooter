@@ -1,6 +1,9 @@
 // game.js
 
+let gameOver = false; // Flag to track whether the game is over
+
 function startGame() {
+    gameOver = false; // Reset the gameOver flag
     // Spawn barriers with a max limit (e.g., 10 barriers)
     spawnBarriers(10);
 
@@ -13,6 +16,8 @@ function startGame() {
 }
 
 function gameLoop() {
+    if (gameOver) return; // Stop the game loop if the game is over
+
     // Clear the canvas before drawing
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -37,6 +42,7 @@ function gameLoop() {
 
 function resetGame() {
     console.log("Game Over");
+    gameOver = true; // Set game over flag to true to stop the game loop
 
     // Display Game Over screen
     displayGameOverMenu();
@@ -92,6 +98,8 @@ function displayGameOverMenu() {
 }
 
 function restartGame() {
+    gameOver = false; // Reset gameOver flag
+
     // Reset player position to the starting point
     playerX = worldWidth / 2 - playerSize / 2;
     playerY = worldHeight / 2 - playerSize / 2;
@@ -101,12 +109,14 @@ function restartGame() {
     bullets = [];
     collectibles = [];
 
-    // Start the game loop again
+    // Show the canvas again and start the game loop
     canvas.style.display = 'block';
     gameLoop();
 }
 
 function showMainMenu() {
+    gameOver = true; // Ensure game loop does not run
+
     // Hide the game canvas
     canvas.style.display = 'none';
 

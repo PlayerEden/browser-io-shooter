@@ -9,41 +9,47 @@
 <body>
     <div id="start-menu">
         <h1>Pixel Survival</h1>
+        <label for="color-picker">Choose your character color:</label>
+        <input type="color" id="color-picker" value="#00FF00">
         <button id="start-button">Start Game</button>
         <button id="character-button">Character</button>
+        <button id="settings-button">Settings</button>
     </div>
 
-    <div id="character-menu" style="display: none;">
-        <h2>Character Customization</h2>
-        <label for="color-picker">Choose Character Color:</label>
-        <input type="color" id="color-picker" value="#00FF00"><br><br>
+    <div id="settings-menu" style="display: none;">
+        <h1>Settings</h1>
+        <label for="player-speed">Player Speed:</label>
+        <input type="number" id="player-speed" value="1" min="0.1" step="0.1"><br>
 
-        <label for="accessory-type">Choose Accessory Type:</label>
-        <select id="accessory-type">
-            <option value="visor">Visor</option>
-            <option value="eyes">Eyes</option>
-        </select><br><br>
+        <label for="enemy-speed">Enemy Speed:</label>
+        <input type="number" id="enemy-speed" value="0.5" min="0.1" step="0.1"><br>
 
-        <label for="accessory-color">Choose Accessory Color:</label>
-        <input type="color" id="accessory-color" value="#0000FF"><br><br>
+        <label for="barrier-count">Barrier Count:</label>
+        <input type="number" id="barrier-count" value="20" min="1"><br>
 
-        <canvas id="character-preview" width="100" height="100" style="border: 1px solid #000;"></canvas><br><br>
+        <label for="max-enemy-count">Max Enemy Count:</label>
+        <input type="number" id="max-enemy-count" value="10" min="1"><br>
 
-        <button id="save-character-button">Save</button>
+        <label for="barrier-color">Barrier Color:</label>
+        <input type="color" id="barrier-color" value="#808080"><br>
+
+        <label for="background-color">Map Background Color:</label>
+        <input type="color" id="background-color" value="#333"><br>
+
+        <button id="save-settings-button">Save Settings</button>
         <button id="back-button">Back</button>
     </div>
 
     <canvas id="gameCanvas"></canvas>
 
     <!-- Linking JS files -->
-    <script src="globals.js"></script>
     <script src="controls.js"></script>
-    <script src="player.js"></script> <!-- Load player.js before game.js -->
+    <script src="player.js"></script>
     <script src="weapons.js"></script>
-    <script src="collectibles.js"></script>
     <script src="enemies.js"></script>
+    <script src="collectibles.js"></script>
     <script src="barriers.js"></script>
-    <script src="game.js"></script> <!-- Load game.js after all game elements are defined -->
-    <script src="startMenu.js"></script> <!-- Load startMenu.js last -->
+    <script src="game.js"></script>
+    <script src="startMenu.js"></script>
 </body>
 </html>

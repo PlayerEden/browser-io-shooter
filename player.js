@@ -56,22 +56,36 @@ function drawPlayer() {
 
 
 
+// player.js
+
 // Function to update player position
 function updatePlayerPosition() {
+    let newX = playerX;
+    let newY = playerY;
+
     if (keys.ArrowUp && playerY > 0) {
-        playerY -= movementSpeed;
+        newY -= movementSpeed;
         playerDirection = 'up'; // Update direction
     }
     if (keys.ArrowDown && playerY < worldHeight - playerSize) {
-        playerY += movementSpeed;
+        newY += movementSpeed;
         playerDirection = 'down'; // Update direction
     }
     if (keys.ArrowLeft && playerX > 0) {
-        playerX -= movementSpeed;
+        newX -= movementSpeed;
         playerDirection = 'left'; // Update direction
     }
     if (keys.ArrowRight && playerX < worldWidth - playerSize) {
-        playerX += movementSpeed;
+        newX += movementSpeed;
         playerDirection = 'right'; // Update direction
     }
+
+    // Check if new position is colliding with any barriers
+    if (!isCollidingWithBarrier(newX, playerY, playerSize)) {
+        playerX = newX;
+    }
+    if (!isCollidingWithBarrier(playerX, newY, playerSize)) {
+        playerY = newY;
+    }
 }
+

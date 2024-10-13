@@ -25,8 +25,8 @@ function gameLoop() {
     drawBarriers(); // Draw barriers
     drawCollectibles(); // Draw collectibles
     updateEnemies(); // Move and draw enemies
+    updateBullets(); // Move and draw bullets
     drawPlayer(); // Draw player
-    drawBullets(); // Draw bullets
 
     checkCollectibleCollision(); // Check if player picks up any collectibles
     updatePlayerPosition(); // Update player movement
@@ -34,6 +34,7 @@ function gameLoop() {
     // Continue the game loop
     requestAnimationFrame(gameLoop);
 }
+
 
 // Define drawBackground function to draw the game background
 function drawBackground() {

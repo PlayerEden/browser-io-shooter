@@ -33,4 +33,4 @@ var cameraX = 0;
 var cameraY = 0;
 
 // Flags for game state
-let gameOver = false;
+var gameOver = false; // Declaring 'gameOver' here and removing duplicates

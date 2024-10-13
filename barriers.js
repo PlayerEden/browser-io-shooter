@@ -2,7 +2,7 @@
 
 // Function to spawn barriers with a maximum limit
 function spawnBarriers(maxBarriers) {
-    barriers = []; // Clear previous barriers
+    barriers = [];
     for (let i = 0; i < maxBarriers; i++) {
         const barrier = {
             x: Math.random() * worldWidth,
@@ -19,16 +19,15 @@ function spawnBarriers(maxBarriers) {
             );
         });
 
-        // Add the barrier only if it's not overlapping with others
         if (!isOverlapping) {
             barriers.push(barrier);
         }
     }
 }
 
-// Function to draw barriers with the selected color
+// Function to draw barriers
 function drawBarriers() {
-    ctx.fillStyle = barrierColor; // Use customizable barrier color from settings
+    ctx.fillStyle = barrierColor; // Use customizable barrier color
     barriers.forEach(barrier => {
         ctx.fillRect(barrier.x - cameraX, barrier.y - cameraY, barrier.width, barrier.height);
     });

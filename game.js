@@ -5,8 +5,8 @@ let gameOver = false; // Flag to track whether the game is over
 function startGame() {
     gameOver = false; // Reset the gameOver flag
 
-    // Increase the barrier limit (e.g., 20 barriers instead of 10)
-    spawnBarriers(20);
+    // Increase the barrier limit (e.g., maxBarriers set by settings)
+    spawnBarriers(maxBarriers);
 
     // Start spawning enemies and collectibles at specific intervals
     setInterval(spawnEnemy, 2000); // Spawn enemies every 2 seconds
@@ -27,7 +27,7 @@ function gameLoop() {
     cameraY = Math.max(0, Math.min(worldHeight - canvas.height, playerY - canvas.height / 2));
 
     // Draw and update all game elements in correct order
-    drawBackground(); // Draw the background (scrolling)
+    drawBackground(); // Draw the background (scrolling) with updated color
     drawBarriers(); // Draw barriers
     drawCollectibles(); // Draw collectibles
     updateEnemies(); // Move and draw enemies
@@ -127,7 +127,7 @@ function showMainMenu() {
 
 // Define drawBackground function to draw the game background
 function drawBackground() {
-    ctx.fillStyle = '#333'; // Dark gray background
+    ctx.fillStyle = backgroundColor; // Use customizable background color
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Optionally, draw grid lines to provide visual cues of movement

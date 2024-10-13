@@ -11,9 +11,11 @@ var collectibles = [];
 var playerSize = 20;
 var playerX = worldWidth / 2 - playerSize / 2;
 var playerY = worldHeight / 2 - playerSize / 2;
-var playerColor = '#00FF00'; // Default color
+var playerColor = '#00FF00'; // Default player color (green)
 var playerDirection = 'up'; // Default direction
 var movementSpeed = 2; // Set movement speed to 2px per key press
+var visorColor = '#0000FF'; // Default visor/indicator color (blue)
+var indicatorType = 'visor'; // Default accessory type is visor
 
 // Canvas and context properties
 var canvas = document.getElementById('gameCanvas');

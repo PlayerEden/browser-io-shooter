@@ -1,5 +1,7 @@
 // game.js
 
+let gameOver = false; // Flag to track whether the game is over
+
 function startGame() {
     gameOver = false; // Reset the gameOver flag
 
@@ -121,4 +123,28 @@ function showMainMenu() {
 
     // Show the start menu
     document.getElementById('start-menu').style.display = 'flex';
+}
+
+// Define drawBackground function to draw the game background
+function drawBackground() {
+    ctx.fillStyle = backgroundColor; // Use customizable background color
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Optionally, draw grid lines to provide visual cues of movement
+    ctx.strokeStyle = '#555';
+    ctx.lineWidth = 0.5;
+
+    for (let x = -cameraX % 50; x < canvas.width; x += 50) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+    }
+
+    for (let y = -cameraY % 50; y < canvas.height; y += 50) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+    }
 }

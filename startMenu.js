@@ -1,15 +1,27 @@
 // startMenu.js
 
+// Set up the canvas and context globally
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// Set canvas size to make the map larger
+canvas.width = 600; // Reduced width for a smaller playing area
+canvas.height = 400; // Reduced height
+
 // Start menu and other elements
 const startButton = document.getElementById('start-button');
 const characterButton = document.getElementById('character-button');
 const settingsButton = document.getElementById('settings-button');
 const characterMenu = document.getElementById('character-menu');
 const settingsMenu = document.getElementById('settings-menu');
-const backButton = document.querySelectorAll('.back-button'); // Select all buttons with class 'back-button'
-const saveSettingsButton = document.getElementById('save-settings-button');
 const saveCharacterButton = document.getElementById('save-character-button');
+const saveSettingsButton = document.getElementById('save-settings-button');
+const backButtons = document.querySelectorAll('.back-button');
+
+// Character customization elements
 const colorPicker = document.getElementById('color-picker');
+const accessoryTypeSelect = document.getElementById('accessory-type');
+const accessoryColorPicker = document.getElementById('accessory-color');
 
 // Settings inputs
 const playerSpeedInput = document.getElementById('player-speed');
@@ -19,7 +31,7 @@ const maxEnemyCountInput = document.getElementById('max-enemy-count');
 const barrierColorInput = document.getElementById('barrier-color');
 const backgroundColorInput = document.getElementById('background-color');
 
-// Default settings (initialization)
+// Default settings
 let playerSpeed = parseFloat(playerSpeedInput.value);
 let enemySpeed = parseFloat(enemySpeedInput.value);
 let maxBarriers = parseInt(barrierCountInput.value);
@@ -27,29 +39,15 @@ let maxEnemies = parseInt(maxEnemyCountInput.value);
 let barrierColor = barrierColorInput.value;
 let backgroundColor = backgroundColorInput.value;
 
-// Function to hide all menus
-function hideAllMenus() {
-    document.getElementById('start-menu').style.display = 'none';
-    characterMenu.style.display = 'none';
-    settingsMenu.style.display = 'none';
-    canvas.style.display = 'none';
-}
-
-// Function to show the start menu
-function showStartMenu() {
-    hideAllMenus();
-    document.getElementById('start-menu').style.display = 'flex';
-}
-
 // Show the character customization menu
 characterButton.addEventListener('click', () => {
-    hideAllMenus();
+    document.getElementById('start-menu').style.display = 'none';
     characterMenu.style.display = 'block';
 });
 
 // Show the settings menu
 settingsButton.addEventListener('click', () => {
-    hideAllMenus();
+    document.getElementById('start-menu').style.display = 'none';
     settingsMenu.style.display = 'block';
 });
 
@@ -60,7 +58,8 @@ saveCharacterButton.addEventListener('click', () => {
     indicatorType = accessoryTypeSelect.value;
     visorColor = accessoryColorPicker.value;
 
-    showStartMenu();
+    characterMenu.style.display = 'none';
+    document.getElementById('start-menu').style.display = 'flex';
 });
 
 // Save settings and return to the start menu
@@ -72,19 +71,22 @@ saveSettingsButton.addEventListener('click', () => {
     barrierColor = barrierColorInput.value;
     backgroundColor = backgroundColorInput.value;
 
-    showStartMenu();
+    settingsMenu.style.display = 'none';
+    document.getElementById('start-menu').style.display = 'flex';
 });
 
 // Go back from settings or character customization to start menu
-backButton.forEach(button => {
+backButtons.forEach(button => {
     button.addEventListener('click', () => {
-        showStartMenu();
+        settingsMenu.style.display = 'none';
+        characterMenu.style.display = 'none';
+        document.getElementById('start-menu').style.display = 'flex';
     });
 });
 
 // Start the game on button click
 startButton.addEventListener('click', () => {
-    hideAllMenus();
+    document.getElementById('start-menu').style.display = 'none';
     canvas.style.display = 'block';
 
     // Set the updated background color

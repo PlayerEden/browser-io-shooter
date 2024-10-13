@@ -1,27 +1,27 @@
 // enemies.js
 
-// Function to spawn an enemy
+// Function to spawn an enemy at a random location
 function spawnEnemy() {
-    if (enemies.length < maxEnemies) { // Ensure we do not exceed max enemy count
+    if (enemies.length < maxEnemies) {
         enemies.push({
             x: Math.random() * worldWidth,
             y: Math.random() * worldHeight,
-            speed: enemySpeed // Use saved enemy speed from settings
+            speed: enemySpeed
         });
     }
 }
 
-// Function to update enemies
+// Function to update enemies' movement and handle their interactions
 function updateEnemies() {
-    enemies.forEach(enemy => {
+    enemies.forEach((enemy, index) => {
         let newX = enemy.x;
         let newY = enemy.y;
 
-        // Move the enemy towards the player with the updated speed
-        if (enemy.x < playerX) newX += enemySpeed;
-        if (enemy.x > playerX) newX -= enemySpeed;
-        if (enemy.y < playerY) newY += enemySpeed;
-        if (enemy.y > playerY) newY -= enemySpeed;
+        // Move the enemy towards the player
+        if (enemy.x < playerX) newX += enemy.speed;
+        if (enemy.x > playerX) newX -= enemy.speed;
+        if (enemy.y < playerY) newY += enemy.speed;
+        if (enemy.y > playerY) newY -= enemy.speed;
 
         // Check if the new position is colliding with any barriers
         if (!isCollidingWithBarrier(newX, enemy.y, playerSize)) {
@@ -32,7 +32,7 @@ function updateEnemies() {
         }
 
         // Draw the enemy on the canvas
-        ctx.fillStyle = '#FF0000'; // Red enemy color
+        ctx.fillStyle = '#FF0000'; // Red color for enemies
         ctx.fillRect(enemy.x - cameraX, enemy.y - cameraY, playerSize, playerSize);
 
         // Check for collision with the player
@@ -45,4 +45,7 @@ function updateEnemies() {
             resetGame(); // Call resetGame when a collision occurs
         }
     });
+
+    // Remove enemies that go off-screen (optional)
+    enemies = enemies.filter(enemy => enemy.y < worldHeight && enemy.x < worldWidth);
 }

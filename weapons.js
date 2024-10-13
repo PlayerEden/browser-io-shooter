@@ -2,35 +2,38 @@
 
 // Function to shoot a bullet in the direction the player is facing
 function shootBullet() {
-    let bulletSpeed = 5;
     let bullet = {
         x: playerX + playerSize / 2 - 2.5,
         y: playerY + playerSize / 2 - 2.5,
-        vx: 0,
-        vy: 0,
-        size: 5
+        size: 5,
+        speed: 10,
+        direction: playerDirection
     };
 
-    // Set bullet velocity based on the player's direction
+    // Set bullet velocity based on direction
     switch (playerDirection) {
         case 'up':
-            bullet.vy = -bulletSpeed;
+            bullet.vx = 0;
+            bullet.vy = -bullet.speed;
             break;
         case 'down':
-            bullet.vy = bulletSpeed;
+            bullet.vx = 0;
+            bullet.vy = bullet.speed;
             break;
         case 'left':
-            bullet.vx = -bulletSpeed;
+            bullet.vx = -bullet.speed;
+            bullet.vy = 0;
             break;
         case 'right':
-            bullet.vx = bulletSpeed;
+            bullet.vx = bullet.speed;
+            bullet.vy = 0;
             break;
     }
 
     bullets.push(bullet);
 }
 
-// Function to update and draw bullets
+// Function to update bullets
 function updateBullets() {
     bullets.forEach((bullet, index) => {
         // Move the bullet in its current direction

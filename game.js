@@ -1,66 +1,103 @@
-// weapons.js
+// game.js
 
-// Function to shoot a bullet in the direction the player is facing
-function shootBullet() {
-    let bullet = {
-        x: playerX + playerSize / 2 - 2.5,
-        y: playerY + playerSize / 2 - 2.5,
-        speed: 10,
-        direction: playerDirection,
-        size: 5
-    };
+function startGame() {
+    gameOver = false; // Reset the gameOver flag
 
-    bullets.push(bullet);
+    // Increase the barrier limit
+    spawnBarriers(maxBarriers);
+
+    // Start spawning enemies and collectibles at specific intervals
+    setInterval(spawnEnemy, 2000); // Spawn enemies every 2 seconds
+    setInterval(spawnCollectible, 5000); // Spawn collectibles every 5 seconds
+
+    // Start the main game loop
+    gameLoop();
 }
 
-// Function to update bullets and handle their interactions
-function updateBullets() {
-    ctx.fillStyle = '#FFFF00'; // Yellow bullets
-    bullets.forEach((bullet, bulletIndex) => {
-        // Move the bullet in the direction it was shot
-        switch (bullet.direction) {
-            case 'up':
-                bullet.y -= bullet.speed;
-                break;
-            case 'down':
-                bullet.y += bullet.speed;
-                break;
-            case 'left':
-                bullet.x -= bullet.speed;
-                break;
-            case 'right':
-                bullet.x += bullet.speed;
-                break;
-        }
+function gameLoop() {
+    if (gameOver) return; // Stop the game loop if the game is over
 
-        // Draw the bullet
-        ctx.fillRect(bullet.x - cameraX, bullet.y - cameraY, bullet.size, bullet.size);
+    // Clear the canvas before drawing
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Remove bullets that go off-screen
-        if (bullet.y < 0 || bullet.y > worldHeight || bullet.x < 0 || bullet.x > worldWidth) {
-            bullets.splice(bulletIndex, 1);
-            return;
-        }
+    // Update camera position to follow the player
+    cameraX = Math.max(0, Math.min(worldWidth - canvas.width, playerX - canvas.width / 2));
+    cameraY = Math.max(0, Math.min(worldHeight - canvas.height, playerY - canvas.height / 2));
 
-        // Check if bullet collides with any barriers
-        if (isCollidingWithBarrier(bullet.x, bullet.y, bullet.size)) {
-            bullets.splice(bulletIndex, 1); // Remove bullet if it hits a barrier
-            return;
-        }
+    // Draw and update all game elements in correct order
+    drawBackground(); // Draw the background (scrolling)
+    drawBarriers(); // Draw barriers
+    drawCollectibles(); // Draw collectibles
+    updateEnemies(); // Move and draw enemies
+    updateBullets(); // Move and draw bullets
+    drawPlayer(); // Draw player
 
-        // Check if bullet collides with any enemies
-        enemies.forEach((enemy, enemyIndex) => {
-            if (
-                bullet.x < enemy.x + playerSize &&
-                bullet.x + bullet.size > enemy.x &&
-                bullet.y < enemy.y + playerSize &&
-                bullet.y + bullet.size > enemy.y
-            ) {
-                // Remove both the bullet and the enemy
-                bullets.splice(bulletIndex, 1);
-                enemies.splice(enemyIndex, 1);
-                return;
-            }
-        });
-    });
+    checkCollectibleCollision(); // Check if player picks up any collectibles
+    updatePlayerPosition(); // Update player movement
+
+    // Continue the game loop
+    requestAnimationFrame(gameLoop);
+}
+
+function resetGame() {
+    console.log("Game Over");
+    gameOver = true; // Set game over flag to true to stop the game loop
+
+    // Display Game Over screen
+    displayGameOverMenu();
+}
+
+function displayGameOverMenu() {
+    // Hide the game canvas
+    canvas.style.display = 'none';
+
+    // Create a Game Over menu if it doesn't exist
+    let gameOverMenu = document.getElementById('game-over-menu');
+    if (!gameOverMenu) {
+        gameOverMenu = document.createElement('div');
+        gameOverMenu.id = 'game-over-menu';
+        gameOverMenu.innerHTML = `
+            <h1>Game Over</h1>
+            <button id="restart-button">Restart</button>
+            <button id="main-menu-button">Main Menu</button>
+        `;
+        document.body.appendChild(gameOverMenu);
+    }
+
+    // Show Game Over menu
+    gameOverMenu.style.display = 'flex';
+
+    // Set button actions
+    document.getElementById('restart-button').onclick = restartGame;
+    document.getElementById('main-menu-button').onclick = showMainMenu;
+}
+
+function restartGame() {
+    gameOver = false; // Reset gameOver flag
+
+    // Reset player position to the starting point
+    playerX = worldWidth / 2 - playerSize / 2;
+    playerY = worldHeight / 2 - playerSize / 2;
+
+    // Clear all enemies, bullets, and collectibles arrays to reset game state
+    enemies = [];
+    bullets = [];
+    collectibles = [];
+
+    // Hide the Game Over menu
+    document.getElementById('game-over-menu').style.display = 'none';
+
+    // Show the canvas again and start the game loop
+    canvas.style.display = 'block';
+    gameLoop();
+}
+
+function showMainMenu() {
+    gameOver = true; // Ensure game loop does not run
+
+    // Hide the game canvas
+    canvas.style.display = 'none';
+
+    // Show the start menu
+    document.getElementById('start-menu').style.display = 'flex';
 }

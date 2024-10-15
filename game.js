@@ -1,10 +1,12 @@
 // game.js
 
+let gameOver = false; // Flag to track whether the game is over
+
 function startGame() {
     gameOver = false; // Reset the gameOver flag
 
-    // Increase the barrier limit
-    spawnBarriers(maxBarriers);
+    // Increase the barrier limit (e.g., 20 barriers instead of 10)
+    spawnBarriers(20);
 
     // Start spawning enemies and collectibles at specific intervals
     setInterval(spawnEnemy, 2000); // Spawn enemies every 2 seconds
@@ -39,65 +41,33 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
+function drawBackground() {
+    ctx.fillStyle = backgroundColor; // Use customizable background color
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Optionally, draw grid lines to provide visual cues of movement
+    ctx.strokeStyle = '#555';
+    ctx.lineWidth = 0.5;
+
+    for (let x = -cameraX % 50; x < canvas.width; x += 50) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+    }
+
+    for (let y = -cameraY % 50; y < canvas.height; y += 50) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+    }
+}
+
 function resetGame() {
     console.log("Game Over");
     gameOver = true; // Set game over flag to true to stop the game loop
 
     // Display Game Over screen
     displayGameOverMenu();
-}
-
-function displayGameOverMenu() {
-    // Hide the game canvas
-    canvas.style.display = 'none';
-
-    // Create a Game Over menu if it doesn't exist
-    let gameOverMenu = document.getElementById('game-over-menu');
-    if (!gameOverMenu) {
-        gameOverMenu = document.createElement('div');
-        gameOverMenu.id = 'game-over-menu';
-        gameOverMenu.innerHTML = `
-            <h1>Game Over</h1>
-            <button id="restart-button">Restart</button>
-            <button id="main-menu-button">Main Menu</button>
-        `;
-        document.body.appendChild(gameOverMenu);
-    }
-
-    // Show Game Over menu
-    gameOverMenu.style.display = 'flex';
-
-    // Set button actions
-    document.getElementById('restart-button').onclick = restartGame;
-    document.getElementById('main-menu-button').onclick = showMainMenu;
-}
-
-function restartGame() {
-    gameOver = false; // Reset gameOver flag
-
-    // Reset player position to the starting point
-    playerX = worldWidth / 2 - playerSize / 2;
-    playerY = worldHeight / 2 - playerSize / 2;
-
-    // Clear all enemies, bullets, and collectibles arrays to reset game state
-    enemies = [];
-    bullets = [];
-    collectibles = [];
-
-    // Hide the Game Over menu
-    document.getElementById('game-over-menu').style.display = 'none';
-
-    // Show the canvas again and start the game loop
-    canvas.style.display = 'block';
-    gameLoop();
-}
-
-function showMainMenu() {
-    gameOver = true; // Ensure game loop does not run
-
-    // Hide the game canvas
-    canvas.style.display = 'none';
-
-    // Show the start menu
-    document.getElementById('start-menu').style.display = 'flex';
 }

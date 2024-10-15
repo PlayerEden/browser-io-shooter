@@ -14,14 +14,9 @@ const characterButton = document.getElementById('character-button');
 const settingsButton = document.getElementById('settings-button');
 const characterMenu = document.getElementById('character-menu');
 const settingsMenu = document.getElementById('settings-menu');
-const saveCharacterButton = document.getElementById('save-character-button');
-const saveSettingsButton = document.getElementById('save-settings-button');
 const backButtons = document.querySelectorAll('.back-button');
-
-// Character customization elements
-const colorPicker = document.getElementById('color-picker');
-const accessoryTypeSelect = document.getElementById('accessory-type');
-const accessoryColorPicker = document.getElementById('accessory-color');
+const saveSettingsButton = document.getElementById('save-settings-button');
+const saveCharacterButton = document.getElementById('save-character-button');
 
 // Settings inputs
 const playerSpeedInput = document.getElementById('player-speed');
@@ -30,6 +25,14 @@ const barrierCountInput = document.getElementById('barrier-count');
 const maxEnemyCountInput = document.getElementById('max-enemy-count');
 const barrierColorInput = document.getElementById('barrier-color');
 const backgroundColorInput = document.getElementById('background-color');
+
+// Default settings
+let playerSpeed = parseFloat(playerSpeedInput.value);
+let enemySpeed = parseFloat(enemySpeedInput.value);
+let maxBarriers = parseInt(barrierCountInput.value);
+let maxEnemies = parseInt(maxEnemyCountInput.value);
+let barrierColor = barrierColorInput.value;
+let backgroundColor = backgroundColorInput.value;
 
 // Show the character customization menu
 characterButton.addEventListener('click', () => {
@@ -87,9 +90,3 @@ startButton.addEventListener('click', () => {
     // Start the game loop
     startGame();
 });
-
-// Function to draw the background with the selected color
-function drawBackground() {
-    ctx.fillStyle = backgroundColor; // Use customizable background color
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-}

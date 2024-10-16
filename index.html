@@ -16,9 +16,9 @@
 
     <div id="character-menu" style="display: none;">
         <h1>Character Customization</h1>
-        <label for="color-picker">Choose Character Color:</label>
+        <label for="color-picker">Choose your character color:</label>
         <input type="color" id="color-picker" value="#00FF00"><br>
-        <label for="accessory-type">Choose Accessory Type:</label>
+        <label for="accessory-type">Accessory Type:</label>
         <select id="accessory-type">
             <option value="visor">Visor</option>
             <option value="eyes">Eyes</option>
@@ -55,15 +55,14 @@
 
     <canvas id="gameCanvas"></canvas>
 
-    <!-- Linking JS files in correct order -->
-    <script src="globals.js"></script>
+    <!-- Linking JS files -->
     <script src="controls.js"></script>
     <script src="player.js"></script>
     <script src="weapons.js"></script>
     <script src="enemies.js"></script>
     <script src="collectibles.js"></script>
     <script src="barriers.js"></script>
-    <script src="game.js"></script> <!-- Load 'game.js' before 'startMenu.js' -->
-    <script src="startMenu.js"></script> <!-- Load 'startMenu.js' last -->
+    <script src="game.js"></script>
+    <script src="startMenu.js"></script>
 </body>
 </html>

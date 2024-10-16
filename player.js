@@ -22,13 +22,13 @@ function drawPlayer() {
                 ctx.fillRect(playerX - cameraX + 2, playerY - cameraY, playerSize - 4, 5); // Wide visor across the top
                 break;
             case 'down':
-                ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + 15, playerSize - 4, 5); // Wide visor across the bottom
+                ctx.fillRect(playerX - cameraX + 2, playerY - cameraY + playerSize - 5, playerSize - 4, 5); // Wide visor across the bottom
                 break;
             case 'left':
                 ctx.fillRect(playerX - cameraX, playerY - cameraY + 5, 5, playerSize - 10); // Wide visor on the left side
                 break;
             case 'right':
-                ctx.fillRect(playerX - cameraX + 15, playerY - cameraY + 5, 5, playerSize - 10); // Wide visor on the right side
+                ctx.fillRect(playerX - cameraX + playerSize - 5, playerY - cameraY + 5, 5, playerSize - 10); // Wide visor on the right side
                 break;
         }
     } else if (indicatorType === 'eyes') {
@@ -39,48 +39,43 @@ function drawPlayer() {
                 ctx.fillRect(playerX - cameraX + 11, playerY - cameraY + 3, 3, 3); // Right eye
                 break;
             case 'down':
-                ctx.fillRect(playerX - cameraX + 6, playerY - cameraY + 14, 3, 3); // Left eye
-                ctx.fillRect(playerX - cameraX + 11, playerY - cameraY + 14, 3, 3); // Right eye
+                ctx.fillRect(playerX - cameraX + 6, playerY - cameraY + playerSize - 6, 3, 3); // Left eye
+                ctx.fillRect(playerX - cameraX + 11, playerY - cameraY + playerSize - 6, 3, 3); // Right eye
                 break;
             case 'left':
                 ctx.fillRect(playerX - cameraX + 3, playerY - cameraY + 6, 3, 3); // Top eye
                 ctx.fillRect(playerX - cameraX + 3, playerY - cameraY + 11, 3, 3); // Bottom eye
                 break;
             case 'right':
-                ctx.fillRect(playerX - cameraX + 14, playerY - cameraY + 6, 3, 3); // Top eye
-                ctx.fillRect(playerX - cameraX + 14, playerY - cameraY + 11, 3, 3); // Bottom eye
+                ctx.fillRect(playerX - cameraX + playerSize - 6, playerY - cameraY + 6, 3, 3); // Top eye
+                ctx.fillRect(playerX - cameraX + playerSize - 6, playerY - cameraY + 11, 3, 3); // Bottom eye
                 break;
         }
     }
 }
 
-// Function to update player position based on key presses
+// Function to update player position
 function updatePlayerPosition() {
-    let newX = playerX;
-    let newY = playerY;
+    if (keys['ArrowUp'] && playerY > 0) {
+        playerY -= playerSpeed;
+        playerDirection = 'up';
+    }
+    if (keys['ArrowDown'] && playerY < worldHeight - playerSize) {
+        playerY += playerSpeed;
+        playerDirection = 'down';
+    }
+    if (keys['ArrowLeft'] && playerX > 0) {
+        playerX -= playerSpeed;
+        playerDirection = 'left';
+    }
+    if (keys['ArrowRight'] && playerX < worldWidth - playerSize) {
+        playerX += playerSpeed;
+        playerDirection = 'right';
+    }
+}
 
-    if (keys.ArrowUp && playerY > 0) {
-        newY -= playerSpeed;
-        playerDirection = 'up'; // Update direction
-    }
-    if (keys.ArrowDown && playerY < worldHeight - playerSize) {
-        newY += playerSpeed;
-        playerDirection = 'down'; // Update direction
-    }
-    if (keys.ArrowLeft && playerX > 0) {
-        newX -= playerSpeed;
-        playerDirection = 'left'; // Update direction
-    }
-    if (keys.ArrowRight && playerX < worldWidth - playerSize) {
-        newX += playerSpeed;
-        playerDirection = 'right'; // Update direction
-    }
-
-    // Check for collision with barriers before updating position
-    if (!isCollidingWithBarrier(newX, playerY, playerSize)) {
-        playerX = newX;
-    }
-    if (!isCollidingWithBarrier(playerX, newY, playerSize)) {
-        playerY = newY;
-    }
+// Function to reset player position when restarting the game
+function resetPlayerPosition() {
+    playerX = worldWidth / 2 - playerSize / 2;
+    playerY = worldHeight / 2 - playerSize / 2;
 }

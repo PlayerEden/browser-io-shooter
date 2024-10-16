@@ -1,15 +1,19 @@
 // enemies.js
 
-// Function to spawn an enemy at a random position
+let enemies = []; // Array to store enemies
+
+// Function to spawn an enemy at a random location within the world
 function spawnEnemy() {
-    enemies.push({
+    const enemy = {
         x: Math.random() * worldWidth,
         y: Math.random() * worldHeight,
+        size: 20,
         speed: enemySpeed
-    });
+    };
+    enemies.push(enemy);
 }
 
-// Function to update enemies' positions and handle interactions
+// Function to update enemies' movement and check for collisions
 function updateEnemies() {
     enemies.forEach((enemy, index) => {
         let newX = enemy.x;
@@ -22,25 +26,30 @@ function updateEnemies() {
         if (enemy.y > playerY) newY -= enemy.speed;
 
         // Check if the new position is colliding with any barriers
-        if (!isCollidingWithBarrier(newX, enemy.y, playerSize)) {
+        if (!isCollidingWithBarrier(newX, enemy.y, enemy.size)) {
             enemy.x = newX;
         }
-        if (!isCollidingWithBarrier(enemy.x, newY, playerSize)) {
+        if (!isCollidingWithBarrier(enemy.x, newY, enemy.size)) {
             enemy.y = newY;
         }
 
         // Draw the enemy on the canvas
-        ctx.fillStyle = '#FF0000'; // Red enemy color
-        ctx.fillRect(enemy.x - cameraX, enemy.y - cameraY, playerSize, playerSize);
+        ctx.fillStyle = '#FF0000'; // Red color for enemies
+        ctx.fillRect(enemy.x - cameraX, enemy.y - cameraY, enemy.size, enemy.size);
 
         // Check for collision with the player
         if (
-            playerX < enemy.x + playerSize &&
+            playerX < enemy.x + enemy.size &&
             playerX + playerSize > enemy.x &&
-            playerY < enemy.y + playerSize &&
+            playerY < enemy.y + enemy.size &&
             playerY + playerSize > enemy.y
         ) {
             resetGame(); // Call resetGame when a collision occurs
         }
     });
+}
+
+// Function to reset enemies when restarting the game
+function resetEnemies() {
+    enemies = [];
 }

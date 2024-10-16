@@ -14,9 +14,15 @@ const characterButton = document.getElementById('character-button');
 const settingsButton = document.getElementById('settings-button');
 const characterMenu = document.getElementById('character-menu');
 const settingsMenu = document.getElementById('settings-menu');
-const backButtons = document.querySelectorAll('.back-button');
+const backButtonCharacter = document.getElementById('back-button-character');
+const backButtonSettings = document.getElementById('back-button-settings');
 const saveSettingsButton = document.getElementById('save-settings-button');
 const saveCharacterButton = document.getElementById('save-character-button');
+
+// Character customization elements
+const colorPicker = document.getElementById('color-picker');
+const accessoryTypeSelect = document.getElementById('accessory-type');
+const accessoryColorPicker = document.getElementById('accessory-color');
 
 // Settings inputs
 const playerSpeedInput = document.getElementById('player-speed');
@@ -70,13 +76,16 @@ saveSettingsButton.addEventListener('click', () => {
     document.getElementById('start-menu').style.display = 'flex';
 });
 
-// Go back from settings or character customization to start menu
-backButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        settingsMenu.style.display = 'none';
-        characterMenu.style.display = 'none';
-        document.getElementById('start-menu').style.display = 'flex';
-    });
+// Go back from character customization to start menu
+backButtonCharacter.addEventListener('click', () => {
+    characterMenu.style.display = 'none';
+    document.getElementById('start-menu').style.display = 'flex';
+});
+
+// Go back from settings to start menu
+backButtonSettings.addEventListener('click', () => {
+    settingsMenu.style.display = 'none';
+    document.getElementById('start-menu').style.display = 'flex';
 });
 
 // Start the game on button click

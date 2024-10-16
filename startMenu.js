@@ -40,7 +40,7 @@ let enemySpeed = parseFloat(enemySpeedInput?.value || 1);
 let maxBarriers = parseInt(barrierCountInput?.value || 10);
 let maxEnemies = parseInt(maxEnemyCountInput?.value || 5);
 let barrierColor = barrierColorInput?.value || '#808080';
-let backgroundColor = backgroundColorInput?.value || '#333';
+let backgroundColor = backgroundColorInput?.value || '#333333'; // Corrected to proper hex format
 
 // Show the character customization menu
 characterButton?.addEventListener('click', () => {
@@ -96,14 +96,10 @@ startButton?.addEventListener('click', () => {
     canvas.style.display = 'block';
 
     // Set the updated background color
-    if (typeof drawBackground === 'function') {
-        drawBackground();
-    }
+    drawBackground();
 
     // Start the game loop
-    if (typeof startGame === 'function') {
-        startGame();
-    }
+    startGame();
 });
 
 // Function to draw the background with the selected color

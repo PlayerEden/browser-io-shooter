@@ -35,20 +35,20 @@ function drawPlayer() {
         // Draw two small eyes based on player direction, evenly spaced towards the front
         switch (playerDirection) {
             case 'up':
-                ctx.fillRect(playerX - cameraX + 6, playerY - cameraY + 3, 3, 3); // Left eye
-                ctx.fillRect(playerX - cameraX + 11, playerY - cameraY + 3, 3, 3); // Right eye
+                ctx.fillRect(playerX - cameraX + 5, playerY - cameraY + 3, 3, 3); // Left eye
+                ctx.fillRect(playerX - cameraX + 12, playerY - cameraY + 3, 3, 3); // Right eye
                 break;
             case 'down':
-                ctx.fillRect(playerX - cameraX + 6, playerY - cameraY + playerSize - 6, 3, 3); // Left eye
-                ctx.fillRect(playerX - cameraX + 11, playerY - cameraY + playerSize - 6, 3, 3); // Right eye
+                ctx.fillRect(playerX - cameraX + 5, playerY - cameraY + playerSize - 6, 3, 3); // Left eye
+                ctx.fillRect(playerX - cameraX + 12, playerY - cameraY + playerSize - 6, 3, 3); // Right eye
                 break;
             case 'left':
-                ctx.fillRect(playerX - cameraX + 3, playerY - cameraY + 6, 3, 3); // Top eye
-                ctx.fillRect(playerX - cameraX + 3, playerY - cameraY + 11, 3, 3); // Bottom eye
+                ctx.fillRect(playerX - cameraX + 3, playerY - cameraY + 5, 3, 3); // Top eye
+                ctx.fillRect(playerX - cameraX + 3, playerY - cameraY + 12, 3, 3); // Bottom eye
                 break;
             case 'right':
-                ctx.fillRect(playerX - cameraX + playerSize - 6, playerY - cameraY + 6, 3, 3); // Top eye
-                ctx.fillRect(playerX - cameraX + playerSize - 6, playerY - cameraY + 11, 3, 3); // Bottom eye
+                ctx.fillRect(playerX - cameraX + playerSize - 6, playerY - cameraY + 5, 3, 3); // Top eye
+                ctx.fillRect(playerX - cameraX + playerSize - 6, playerY - cameraY + 12, 3, 3); // Bottom eye
                 break;
         }
     }

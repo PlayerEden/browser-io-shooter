@@ -5,8 +5,8 @@ let enemies = []; // Array to store enemies
 // Function to spawn an enemy at a random location within the world
 function spawnEnemy() {
     const enemy = {
-        x: Math.random() * worldWidth,
-        y: Math.random() * worldHeight,
+        x: Math.random() * (worldWidth - 20), // Ensure enemy is within boundaries
+        y: Math.random() * (worldHeight - 20),
         size: 20,
         speed: enemySpeed
     };
@@ -44,7 +44,10 @@ function updateEnemies() {
             playerY < enemy.y + enemy.size &&
             playerY + playerSize > enemy.y
         ) {
-            resetGame(); // Call resetGame when a collision occurs
+            if (!gameOver) {
+                gameOver = true;
+                resetGame(); // Call resetGame when a collision occurs
+            }
         }
     });
 }

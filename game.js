@@ -1,6 +1,8 @@
 // game.js
 
 let gameOver = false; // Flag to track whether the game is over
+let enemyInterval, collectibleInterval;
+let animationFrameId;
 
 function startGame() {
     gameOver = false; // Reset the gameOver flag
@@ -9,15 +11,24 @@ function startGame() {
     spawnBarriers(maxBarriers);
 
     // Start spawning enemies and collectibles at specific intervals
-    setInterval(spawnEnemy, 2000); // Spawn enemies every 2 seconds
-    setInterval(spawnCollectible, 5000); // Spawn collectibles every 5 seconds
+    enemyInterval = setInterval(spawnEnemy, 2000); // Spawn enemies every 2 seconds
+    collectibleInterval = setInterval(spawnCollectible, 5000); // Spawn collectibles every 5 seconds
 
     // Start the main game loop
     gameLoop();
 }
 
 function gameLoop() {
-    if (gameOver) return; // Stop the game loop if the game is over
+    if (gameOver) {
+        cancelAnimationFrame(animationFrameId);
+        return; // Stop the game loop if the game is over
+    }
+
+    // Check canvas dimensions before drawing
+    if (canvas.width === 0 || canvas.height === 0) {
+        console.warn("Canvas dimensions are not set correctly.");
+        return;
+    }
 
     // Clear the canvas before drawing
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -38,12 +49,19 @@ function gameLoop() {
     updatePlayerPosition(); // Update player movement
 
     // Continue the game loop
-    requestAnimationFrame(gameLoop);
+    animationFrameId = requestAnimationFrame(gameLoop);
 }
 
 function resetGame() {
     console.log("Game Over");
     gameOver = true; // Set game over flag to true to stop the game loop
+
+    // Clear intervals to prevent accumulation
+    clearInterval(enemyInterval);
+    clearInterval(collectibleInterval);
+
+    // Cancel the animation frame
+    cancelAnimationFrame(animationFrameId);
 
     // Display Game Over screen
     displayGameOverMenu();
@@ -51,7 +69,7 @@ function resetGame() {
 
 function displayGameOverMenu() {
     // Hide the game canvas
-    canvas.style.display = 'none';
+    toggleVisibility(canvas, false);
 
     // Create a Game Over menu
     const gameOverMenu = document.createElement('div');
@@ -111,18 +129,18 @@ function restartGame() {
     collectibles = [];
 
     // Show the canvas again and start the game loop
-    canvas.style.display = 'block';
-    gameLoop();
+    toggleVisibility(canvas, true);
+    startGame();
 }
 
 function showMainMenu() {
     gameOver = true; // Ensure game loop does not run
 
     // Hide the game canvas
-    canvas.style.display = 'none';
+    toggleVisibility(canvas, false);
 
     // Show the start menu
-    document.getElementById('start-menu').style.display = 'flex';
+    toggleVisibility(document.getElementById('start-menu'), true);
 }
 
 // Define drawBackground function to draw the game background
@@ -147,4 +165,9 @@ function drawBackground() {
         ctx.lineTo(canvas.width, y);
         ctx.stroke();
     }
+}
+
+// Helper function to toggle visibility of elements
+function toggleVisibility(element, isVisible) {
+    element.style.display = isVisible ? 'block' : 'none';
 }
